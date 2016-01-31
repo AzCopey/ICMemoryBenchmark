@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ICMemory">
+      <UniqueIdentifier>{a8211a60-c5cd-4706-8d06-43cfbfe3e2c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ICBenchmark">
+      <UniqueIdentifier>{7935f4a9-c605-457d-bd5d-94f1cffc252e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Benchmarks">
+      <UniqueIdentifier>{85f5c937-ccd2-4c32-b84c-e59d39a373c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ICMemory\BuddyAllocator.cpp">
+      <Filter>ICMemory</Filter>
+    </ClCompile>
+    <ClCompile Include="ICMemory\FrameAllocator.cpp">
+      <Filter>ICMemory</Filter>
+    </ClCompile>
+    <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp">
+      <Filter>ICBenchmark</Filter>
+    </ClCompile>
+    <ClCompile Include="ICBenchmark\Timer.cpp">
+      <Filter>ICBenchmark</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ICBenchmark\Benchmark.cpp">
+      <Filter>ICBenchmark</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\BuddyAllocationsBenchmark.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\StandardAllocationsBenchmark.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ICMemory\BuddyAllocator.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\ForwardDeclarations.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\FrameAllocator.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\ICMemory.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\MakeShared.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\MakeUnique.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\MemoryUtils.h">
+      <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICBenchmark\BenchmarkSystem.h">
+      <Filter>ICBenchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="ICBenchmark\Benchmark.h">
+      <Filter>ICBenchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="ICBenchmark\ForwardDeclarations.h">
+      <Filter>ICBenchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="ICBenchmark\ICBenchmark.h">
+      <Filter>ICBenchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="ICBenchmark\Timer.h">
+      <Filter>ICBenchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\BuddyAllocationsBenchmark.h">
+      <Filter>Benchmarks</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\StandardAllocationsBenchmark.h">
+      <Filter>Benchmarks</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
