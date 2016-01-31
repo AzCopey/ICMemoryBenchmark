@@ -22,31 +22,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _IC_BUDDYALLOCATIONSBENCHMARK_H_
-#define _IC_BUDDYALLOCATIONSBENCHMARK_H_
+#ifndef _IC_STANDARDSMALLALLOCATIONSBENCHMARK_H_
+#define _IC_STANDARDSMALLALLOCATIONSBENCHMARK_H_
 
 #include "../ICBenchmark/ICBenchmark.h"
-#include "../ICMemory/ICMemory.h"
 
-/// A benchmark for testing allocation time with the BuddyAllocator.
+/// A benchmark for testing allocation time with new/delete.
 ///
-class BuddyAllocationsBenchmark final : public IC::Benchmark
+class StandardSmallAllocationsBenchmark final : public IC::Benchmark
 {
 public:
     /// Initialises the benchmark.
     ///
-    BuddyAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
+    StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
 
-private:
-    /// @return The name of the benchmark.
+    /// @return The description of the benchmark.
     ///
-    std::string getName() const override;
+    std::string getDescription() const override;
+private:
 
     /// Performs the test.
     ///
     void run() override;
-
-    IC::BuddyAllocator m_allocator;
 };
 
 #endif

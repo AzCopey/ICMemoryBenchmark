@@ -28,10 +28,16 @@
     <ClCompile Include="ICBenchmark\Benchmark.cpp">
       <Filter>ICBenchmark</Filter>
     </ClCompile>
-    <ClCompile Include="Benchmarks\BuddyAllocationsBenchmark.cpp">
+    <ClCompile Include="Benchmarks\BuddyLargeAllocationsBenchmark.cpp">
       <Filter>Benchmarks</Filter>
     </ClCompile>
-    <ClCompile Include="Benchmarks\StandardAllocationsBenchmark.cpp">
+    <ClCompile Include="Benchmarks\StandardLargeAllocationsBenchmark.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\BuddySmallAllocationsBenchmark.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\StandardSmallAllocationsBenchmark.cpp">
       <Filter>Benchmarks</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,10 +78,16 @@
     <ClInclude Include="ICBenchmark\Timer.h">
       <Filter>ICBenchmark</Filter>
     </ClInclude>
-    <ClInclude Include="Benchmarks\BuddyAllocationsBenchmark.h">
+    <ClInclude Include="Benchmarks\BuddyLargeAllocationsBenchmark.h">
       <Filter>Benchmarks</Filter>
     </ClInclude>
-    <ClInclude Include="Benchmarks\StandardAllocationsBenchmark.h">
+    <ClInclude Include="Benchmarks\StandardLargeAllocationsBenchmark.h">
+      <Filter>Benchmarks</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\BuddySmallAllocationsBenchmark.h">
+      <Filter>Benchmarks</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\StandardSmallAllocationsBenchmark.h">
       <Filter>Benchmarks</Filter>
     </ClInclude>
   </ItemGroup>

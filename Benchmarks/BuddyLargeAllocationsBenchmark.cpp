@@ -22,32 +22,39 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "StandardAllocationsBenchmark.h"
+#include "BuddyLargeAllocationsBenchmark.h"
 
 namespace
 {
-    const std::int32_t k_numAllocations = 100000;
-    const std::int32_t k_allocationSize = 100000;
+    const std::int32_t k_numIterations = 10000;
+    const std::int32_t k_allocationSize = 10'000'000;
+    const std::int32_t k_allocatorSize = 128 * 1024 * 1024;
+    const std::int32_t k_allocatorMinBlockSize = 1024;
 }
 
 //------------------------------------------------------------------------------
-StandardAllocationsBenchmark::StandardAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
-    : Benchmark(in_benchmarkSystem)
+BuddyLargeAllocationsBenchmark::BuddyLargeAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
+    : Benchmark(in_benchmarkSystem), m_allocator(k_allocatorSize, k_allocatorMinBlockSize)
 {
 }
 
 //------------------------------------------------------------------------------
-std::string StandardAllocationsBenchmark::getName() const
+std::string BuddyLargeAllocationsBenchmark::getDescription() const
 {
-    return "Standard - Basic Allocations";
+    return "10,000 large allocations with the Buddy Allocator";
 }
 
 //------------------------------------------------------------------------------
-void StandardAllocationsBenchmark::run()
+void BuddyLargeAllocationsBenchmark::run()
 {
-    for (int i = 0; i < k_numAllocations; ++i)
+    for (int i = 0; i < k_numIterations; ++i)
     {
-        auto d = std::unique_ptr<std::uint8_t[]>(new uint8_t[k_allocationSize]);
+        auto a = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto b = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto c = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto d = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto e = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+
     }
 
     complete();

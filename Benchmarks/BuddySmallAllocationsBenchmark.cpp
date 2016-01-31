@@ -22,34 +22,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "BuddyAllocationsBenchmark.h"
+#include "BuddySmallAllocationsBenchmark.h"
 
 namespace
 {
-    const std::int32_t k_numAllocations = 100000;
-    const std::int32_t k_allocationSize = 100000;
-    const std::int32_t k_allocatorSize = 1024 * 1024;
-    const std::int32_t k_allocatorMinBlockSize = 128;
+    const std::int32_t k_numIterations = 1000000;
+    const std::int32_t k_allocatorSize = 256;
+    const std::int32_t k_allocatorMinBlockSize = 16;
 }
 
 //------------------------------------------------------------------------------
-BuddyAllocationsBenchmark::BuddyAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
+BuddySmallAllocationsBenchmark::BuddySmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
     : Benchmark(in_benchmarkSystem), m_allocator(k_allocatorSize, k_allocatorMinBlockSize)
 {
 }
 
 //------------------------------------------------------------------------------
-std::string BuddyAllocationsBenchmark::getName() const
+std::string BuddySmallAllocationsBenchmark::getDescription() const
 {
-    return "BuddyAllocator - Basic Allocations";
+    return "1,000,000 small allocations with the Buddy Allocator";
 }
 
 //------------------------------------------------------------------------------
-void BuddyAllocationsBenchmark::run()
+void BuddySmallAllocationsBenchmark::run()
 {
-    for (int i = 0; i < k_numAllocations; ++i)
+    for (int i = 0; i < k_numIterations; ++i)
     {
-        auto d = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto a = IC::makeUnique<std::uint32_t>(m_allocator);
+        auto b = IC::makeUnique<std::uint32_t>(m_allocator);
+        auto c = IC::makeUnique<std::uint32_t>(m_allocator);
+        auto d = IC::makeUnique<std::uint32_t>(m_allocator);
+        auto e = IC::makeUnique<std::uint32_t>(m_allocator);
     }
 
     complete();

@@ -22,26 +22,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "ICBenchmark/ICBenchmark.h"
-#include "Benchmarks/BuddyLargeAllocationsBenchmark.h"
-#include "Benchmarks/BuddySmallAllocationsBenchmark.h"
-#include "Benchmarks/StandardLargeAllocationsBenchmark.h"
-#include "Benchmarks/StandardSmallAllocationsBenchmark.h"
+#ifndef _IC_BUDDYLARGEALLOCATIONSBENCHMARK_H_
+#define _IC_BUDDYLARGEALLOCATIONSBENCHMARK_H_
 
-#include <iostream>
+#include "../ICBenchmark/ICBenchmark.h"
+#include "../ICMemory/ICMemory.h"
 
-int main()
+/// A benchmark for testing allocation time with the BuddyAllocator.
+///
+class BuddyLargeAllocationsBenchmark final : public IC::Benchmark
 {
-    IC::BenchmarkSystem benchmarkSystem;
+public:
+    /// Initialises the benchmark.
+    ///
+    BuddyLargeAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
+    
+    /// @return A description of the benchmark.
+    ///
+    std::string getDescription() const override;
+private:
 
-    benchmarkSystem.createBenchmark <StandardSmallAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <BuddySmallAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <StandardLargeAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <BuddyLargeAllocationsBenchmark>();
+    /// Performs the test.
+    ///
+    void run() override;
 
-    benchmarkSystem.runBenchmarks();
+    IC::BuddyAllocator m_allocator;
+};
 
-    int x = 0;
-    std::cin >> x;
-    return 0;
-}
+#endif

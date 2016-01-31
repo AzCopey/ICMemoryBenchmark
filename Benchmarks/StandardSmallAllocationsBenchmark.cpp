@@ -22,26 +22,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "ICBenchmark/ICBenchmark.h"
-#include "Benchmarks/BuddyLargeAllocationsBenchmark.h"
-#include "Benchmarks/BuddySmallAllocationsBenchmark.h"
-#include "Benchmarks/StandardLargeAllocationsBenchmark.h"
-#include "Benchmarks/StandardSmallAllocationsBenchmark.h"
+#include "StandardSmallAllocationsBenchmark.h"
 
-#include <iostream>
-
-int main()
+namespace
 {
-    IC::BenchmarkSystem benchmarkSystem;
+    const std::int32_t k_numIterations = 1000000;
+}
 
-    benchmarkSystem.createBenchmark <StandardSmallAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <BuddySmallAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <StandardLargeAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <BuddyLargeAllocationsBenchmark>();
+//------------------------------------------------------------------------------
+StandardSmallAllocationsBenchmark::StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
+    : Benchmark(in_benchmarkSystem)
+{
+}
 
-    benchmarkSystem.runBenchmarks();
+//------------------------------------------------------------------------------
+std::string StandardSmallAllocationsBenchmark::getDescription() const
+{
+    return "1,000,000 small allocations with the standard allocator";
+}
 
-    int x = 0;
-    std::cin >> x;
-    return 0;
+//------------------------------------------------------------------------------
+void StandardSmallAllocationsBenchmark::run()
+{
+    for (int i = 0; i < k_numIterations; ++i)
+    {
+        auto a = std::unique_ptr<std::uint32_t>(new uint32_t);
+        auto b = std::unique_ptr<std::uint32_t>(new uint32_t);
+        auto c = std::unique_ptr<std::uint32_t>(new uint32_t);
+        auto d = std::unique_ptr<std::uint32_t>(new uint32_t);
+        auto e = std::unique_ptr<std::uint32_t>(new uint32_t);
+    }
+
+    complete();
 }

@@ -22,24 +22,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _IC_STANDARDALLOCATIONSBENCHMARK_H_
-#define _IC_STANDARDALLOCATIONSBENCHMARK_H_
+#ifndef _IC_STANDARDLARGEALLOCATIONSBENCHMARK_H_
+#define _IC_STANDARDLARGEALLOCATIONSBENCHMARK_H_
 
 #include "../ICBenchmark/ICBenchmark.h"
 
 /// A benchmark for testing allocation time with new/delete.
 ///
-class StandardAllocationsBenchmark final : public IC::Benchmark
+class StandardLargeAllocationsBenchmark final : public IC::Benchmark
 {
 public:
     /// Initialises the benchmark.
     ///
-    StandardAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
+    StandardLargeAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
 
-private:
-    /// @return The name of the benchmark.
+    /// @return The description of the benchmark.
     ///
-    std::string getName() const override;
+    std::string getDescription() const override;
+private:
 
     /// Performs the test.
     ///

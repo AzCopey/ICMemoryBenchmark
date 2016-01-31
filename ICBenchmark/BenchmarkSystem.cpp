@@ -76,7 +76,7 @@ namespace IC
         m_timer.stop();
         
         BenchmarkReport benchmarkReport;
-        benchmarkReport.m_name = m_currentBenchmark->getName();
+        benchmarkReport.m_description = m_currentBenchmark->getDescription();
         benchmarkReport.m_timeTaken = m_timer.getElapsedTime();
         m_report.push_back(benchmarkReport);
 
@@ -93,7 +93,7 @@ namespace IC
 
         for (auto report : m_report)
         {
-            std::cout << report.m_name << ": " << report.m_timeTaken << "ms." << std::endl;
+            std::cout << report.m_description << ": " << report.m_timeTaken << "ms" << std::endl;
         }
     }
 }

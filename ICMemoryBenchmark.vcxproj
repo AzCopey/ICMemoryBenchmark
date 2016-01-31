@@ -146,8 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Benchmarks\BuddyAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\StandardAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\BuddyLargeAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\BuddySmallAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\StandardLargeAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\StandardSmallAllocationsBenchmark.cpp" />
     <ClCompile Include="ICBenchmark\Benchmark.cpp" />
     <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp" />
     <ClCompile Include="ICBenchmark\Timer.cpp" />
@@ -156,8 +158,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Benchmarks\BuddyAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\StandardAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\BuddyLargeAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\BuddySmallAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\StandardLargeAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\StandardSmallAllocationsBenchmark.h" />
     <ClInclude Include="ICBenchmark\Benchmark.h" />
     <ClInclude Include="ICBenchmark\BenchmarkSystem.h" />
     <ClInclude Include="ICBenchmark\ForwardDeclarations.h" />

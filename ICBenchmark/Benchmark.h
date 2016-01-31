@@ -52,9 +52,9 @@ namespace IC
 
         /// This must be thread-safe.
         ///
-        /// @return a name for the benchmark.
+        /// @return A description for the benchmark.
         ///
-        virtual std::string getName() const = 0;
+        virtual std::string getDescription() const = 0;
 
         virtual ~Benchmark() { };
 

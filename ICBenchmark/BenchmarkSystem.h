@@ -63,7 +63,7 @@ namespace IC
         /// A container for information on the result of a benchmark.
         struct BenchmarkReport
         {
-            std::string m_name;
+            std::string m_description;
             std::uint32_t m_timeTaken;
         };
 
