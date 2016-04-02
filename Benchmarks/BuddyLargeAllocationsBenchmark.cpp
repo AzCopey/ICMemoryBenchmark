@@ -33,29 +33,29 @@ namespace
 }
 
 //------------------------------------------------------------------------------
-BuddyLargeAllocationsBenchmark::BuddyLargeAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
-    : Benchmark(in_benchmarkSystem), m_allocator(k_allocatorSize, k_allocatorMinBlockSize)
+BuddyLargeAllocationsBenchmark::BuddyLargeAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem)
+    : Benchmark(benchmarkSystem), m_allocator(k_allocatorSize, k_allocatorMinBlockSize)
 {
 }
 
 //------------------------------------------------------------------------------
-std::string BuddyLargeAllocationsBenchmark::getDescription() const
+std::string BuddyLargeAllocationsBenchmark::GetDescription() const
 {
     return "10,000 large allocations with the Buddy Allocator";
 }
 
 //------------------------------------------------------------------------------
-void BuddyLargeAllocationsBenchmark::run()
+void BuddyLargeAllocationsBenchmark::Run()
 {
     for (int i = 0; i < k_numIterations; ++i)
     {
-        auto a = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
-        auto b = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
-        auto c = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
-        auto d = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
-        auto e = IC::makeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto a = IC::MakeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto b = IC::MakeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto c = IC::MakeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto d = IC::MakeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
+        auto e = IC::MakeUniqueArray<std::uint8_t>(m_allocator, k_allocationSize);
 
     }
 
-    complete();
+    Complete();
 }

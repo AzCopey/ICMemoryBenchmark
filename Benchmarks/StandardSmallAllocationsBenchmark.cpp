@@ -30,19 +30,19 @@ namespace
 }
 
 //------------------------------------------------------------------------------
-StandardSmallAllocationsBenchmark::StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
-    : Benchmark(in_benchmarkSystem)
+StandardSmallAllocationsBenchmark::StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem)
+    : Benchmark(benchmarkSystem)
 {
 }
 
 //------------------------------------------------------------------------------
-std::string StandardSmallAllocationsBenchmark::getDescription() const
+std::string StandardSmallAllocationsBenchmark::GetDescription() const
 {
     return "1,000,000 small allocations with the standard allocator";
 }
 
 //------------------------------------------------------------------------------
-void StandardSmallAllocationsBenchmark::run()
+void StandardSmallAllocationsBenchmark::Run()
 {
     for (int i = 0; i < k_numIterations; ++i)
     {
@@ -53,5 +53,5 @@ void StandardSmallAllocationsBenchmark::run()
         auto e = std::unique_ptr<std::uint32_t>(new uint32_t);
     }
 
-    complete();
+    Complete();
 }

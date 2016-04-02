@@ -31,19 +31,19 @@ namespace
 }
 
 //------------------------------------------------------------------------------
-StandardLargeAllocationsBenchmark::StandardLargeAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
-    : Benchmark(in_benchmarkSystem)
+StandardLargeAllocationsBenchmark::StandardLargeAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem)
+    : Benchmark(benchmarkSystem)
 {
 }
 
 //------------------------------------------------------------------------------
-std::string StandardLargeAllocationsBenchmark::getDescription() const
+std::string StandardLargeAllocationsBenchmark::GetDescription() const
 {
     return "10,000 large allocations with the standard allocator";
 }
 
 //------------------------------------------------------------------------------
-void StandardLargeAllocationsBenchmark::run()
+void StandardLargeAllocationsBenchmark::Run()
 {
     for (int i = 0; i < k_numIterations; ++i)
     {
@@ -54,5 +54,5 @@ void StandardLargeAllocationsBenchmark::run()
         auto e = std::unique_ptr<std::uint8_t[]>(new uint8_t[k_allocationSize]);
     }
 
-    complete();
+    Complete();
 }

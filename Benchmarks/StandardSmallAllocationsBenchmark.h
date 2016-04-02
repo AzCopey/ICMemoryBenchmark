@@ -34,16 +34,19 @@ class StandardSmallAllocationsBenchmark final : public IC::Benchmark
 public:
     /// Initialises the benchmark.
     ///
-    StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
+    /// @param benchmarkSystem
+    ///     The benchmark system.
+    ///
+    StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
 
     /// @return The description of the benchmark.
     ///
-    std::string getDescription() const override;
+    std::string GetDescription() const override;
 private:
 
     /// Performs the test.
     ///
-    void run() override;
+    void Run() override;
 };
 
 #endif

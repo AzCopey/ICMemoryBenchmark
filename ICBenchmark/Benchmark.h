@@ -48,13 +48,16 @@ namespace IC
     public:
         /// Constructs a new benchmark with the given reference to the benchmark system.
         ///
-        Benchmark(BenchmarkSystem& in_benchmarkSystem);
+        /// @param benchmarkSystem
+        ///     The benchmark system.
+        ///
+        Benchmark(BenchmarkSystem& benchmarkSystem);
 
         /// This must be thread-safe.
         ///
         /// @return A description for the benchmark.
         ///
-        virtual std::string getDescription() const = 0;
+        virtual std::string GetDescription() const = 0;
 
         virtual ~Benchmark() { };
 
@@ -66,12 +69,12 @@ namespace IC
         /// be called. The test can be multi-threaded, in which case complete() will
         /// be called after the the test() method has finished running().
         ///
-        virtual void run() = 0;
+        virtual void Run() = 0;
 
         /// Completes the current test. This is thread-safe, but should only be called
         /// while a benchmark test is active.
         ///
-        void complete();
+        void Complete();
 
     private:
         BenchmarkSystem& m_benchmarkSystem;

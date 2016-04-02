@@ -35,16 +35,19 @@ class BuddySmallAllocationsBenchmark final : public IC::Benchmark
 public:
     /// Initialises the benchmark.
     ///
-    BuddySmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem);
+    /// @param benchmarkSystem
+    ///     The benchmark system.
+    ///
+    BuddySmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
     
     /// @return A description of the benchmark.
     ///
-    std::string getDescription() const override;
+    std::string GetDescription() const override;
 private:
 
     /// Performs the test.
     ///
-    void run() override;
+    void Run() override;
 
     IC::BuddyAllocator m_allocator;
 };

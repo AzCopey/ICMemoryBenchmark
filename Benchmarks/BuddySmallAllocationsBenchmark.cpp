@@ -32,28 +32,28 @@ namespace
 }
 
 //------------------------------------------------------------------------------
-BuddySmallAllocationsBenchmark::BuddySmallAllocationsBenchmark(IC::BenchmarkSystem& in_benchmarkSystem)
-    : Benchmark(in_benchmarkSystem), m_allocator(k_allocatorSize, k_allocatorMinBlockSize)
+BuddySmallAllocationsBenchmark::BuddySmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem)
+    : Benchmark(benchmarkSystem), m_allocator(k_allocatorSize, k_allocatorMinBlockSize)
 {
 }
 
 //------------------------------------------------------------------------------
-std::string BuddySmallAllocationsBenchmark::getDescription() const
+std::string BuddySmallAllocationsBenchmark::GetDescription() const
 {
     return "1,000,000 small allocations with the Buddy Allocator";
 }
 
 //------------------------------------------------------------------------------
-void BuddySmallAllocationsBenchmark::run()
+void BuddySmallAllocationsBenchmark::Run()
 {
     for (int i = 0; i < k_numIterations; ++i)
     {
-        auto a = IC::makeUnique<std::uint32_t>(m_allocator);
-        auto b = IC::makeUnique<std::uint32_t>(m_allocator);
-        auto c = IC::makeUnique<std::uint32_t>(m_allocator);
-        auto d = IC::makeUnique<std::uint32_t>(m_allocator);
-        auto e = IC::makeUnique<std::uint32_t>(m_allocator);
+        auto a = IC::MakeUnique<std::uint32_t>(m_allocator);
+        auto b = IC::MakeUnique<std::uint32_t>(m_allocator);
+        auto c = IC::MakeUnique<std::uint32_t>(m_allocator);
+        auto d = IC::MakeUnique<std::uint32_t>(m_allocator);
+        auto e = IC::MakeUnique<std::uint32_t>(m_allocator);
     }
 
-    complete();
+    Complete();
 }

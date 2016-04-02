@@ -43,31 +43,31 @@ namespace IC
         /// Creates a new timer. The timer will start running immediately unless
         /// false is passed to the contructor.
         ///
-        /// @param in_startImmediately
+        /// @param startImmediately
         ///		Whether or not the timer should be started immediately. Defaults to
         ///		True.
         ///
-        Timer(bool in_startImmediately = true) noexcept;
+        Timer(bool startImmediately = true) noexcept;
 
         /// Starts the timer running. This is only needed if re-starting the timer
         /// or false was passed during construction. By default the timer will be
         /// reset when restarting, if resuming the timer is desired false can be
         /// passed in. This will assert if the Timer is already running when called.
         ///
-        /// @param in_reset
+        /// @param reset
         ///		Whether or not the timer should be reset. Defaults to true.
         ///
-        void start(bool in_reset = true) noexcept;
+        void Start(bool reset = true) noexcept;
 
         /// Stops the timer running. This will assert if the timer is not running
         /// when called.
         ///
-        void stop() noexcept;
+        void Stop() noexcept;
 
         /// @return The elapsed time in milliseconds, recorded the last time stop()
         /// was called.
         ///
-        std::uint32_t getElapsedTime() const noexcept;
+        std::uint32_t GetElapsedTime() const noexcept;
 
     private:
         bool m_running = false;

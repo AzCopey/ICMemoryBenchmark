@@ -29,14 +29,14 @@
 namespace IC
 {
     //------------------------------------------------------------------------------
-    Benchmark::Benchmark(BenchmarkSystem& in_benchmarkSystem)
-        : m_benchmarkSystem(in_benchmarkSystem)
+    Benchmark::Benchmark(BenchmarkSystem& benchmarkSystem)
+        : m_benchmarkSystem(benchmarkSystem)
     {
     }
 
     //------------------------------------------------------------------------------
-    void Benchmark::complete()
+    void Benchmark::Complete()
     {
-        m_benchmarkSystem.complete(this);
+        m_benchmarkSystem.Complete(this);
     }
 }

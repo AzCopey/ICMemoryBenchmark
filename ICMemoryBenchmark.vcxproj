@@ -154,7 +154,8 @@
     <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp" />
     <ClCompile Include="ICBenchmark\Timer.cpp" />
     <ClCompile Include="ICMemory\BuddyAllocator.cpp" />
-    <ClCompile Include="ICMemory\FrameAllocator.cpp" />
+    <ClCompile Include="ICMemory\LinearAllocator.cpp" />
+    <ClCompile Include="ICMemory\String.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,13 +168,22 @@
     <ClInclude Include="ICBenchmark\ForwardDeclarations.h" />
     <ClInclude Include="ICBenchmark\ICBenchmark.h" />
     <ClInclude Include="ICBenchmark\Timer.h" />
+    <ClInclude Include="ICMemory\AllocatorWrapper.h" />
     <ClInclude Include="ICMemory\BuddyAllocator.h" />
+    <ClInclude Include="ICMemory\Deque.h" />
     <ClInclude Include="ICMemory\ForwardDeclarations.h" />
-    <ClInclude Include="ICMemory\FrameAllocator.h" />
+    <ClInclude Include="ICMemory\IAllocator.h" />
     <ClInclude Include="ICMemory\ICMemory.h" />
-    <ClInclude Include="ICMemory\MakeShared.h" />
-    <ClInclude Include="ICMemory\MakeUnique.h" />
+    <ClInclude Include="ICMemory\LinearAllocator.h" />
     <ClInclude Include="ICMemory\MemoryUtils.h" />
+    <ClInclude Include="ICMemory\Queue.h" />
+    <ClInclude Include="ICMemory\SharedPtr.h" />
+    <ClInclude Include="ICMemory\Stack.h" />
+    <ClInclude Include="ICMemory\String.h" />
+    <ClInclude Include="ICMemory\UniquePtr.h" />
+    <ClInclude Include="ICMemory\UnorderedMap.h" />
+    <ClInclude Include="ICMemory\UnorderedSet.h" />
+    <ClInclude Include="ICMemory\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

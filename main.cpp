@@ -34,12 +34,12 @@ int main()
 {
     IC::BenchmarkSystem benchmarkSystem;
 
-    benchmarkSystem.createBenchmark <StandardSmallAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <BuddySmallAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <StandardLargeAllocationsBenchmark>();
-    benchmarkSystem.createBenchmark <BuddyLargeAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<StandardSmallAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<BuddySmallAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<StandardLargeAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<BuddyLargeAllocationsBenchmark>();
 
-    benchmarkSystem.runBenchmarks();
+    benchmarkSystem.RunBenchmarks();
 
     int x = 0;
     std::cin >> x;

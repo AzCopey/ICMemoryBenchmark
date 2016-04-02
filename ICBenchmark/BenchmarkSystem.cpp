@@ -35,7 +35,7 @@ namespace IC
     }
 
     //------------------------------------------------------------------------------
-    void BenchmarkSystem::runBenchmarks()
+    void BenchmarkSystem::RunBenchmarks()
     {
         assert(!m_running);
         assert(m_benchmarks.size() > 0);
@@ -46,10 +46,10 @@ namespace IC
         while (m_benchmarks.size() > 0)
         {
             m_currentBenchmark = m_benchmarks.front().get();
-            m_timer.start(true);
+            m_timer.Start(true);
 
             lock.unlock();
-            m_currentBenchmark->run();
+            m_currentBenchmark->Run();
             lock.lock();
 
             while (m_currentBenchmark)
@@ -60,24 +60,24 @@ namespace IC
             m_benchmarks.pop();
         }
 
-        printReport();
+        PrintReport();
         m_report.clear();
 
         m_running = false;
     }
 
     //------------------------------------------------------------------------------
-    void BenchmarkSystem::complete(Benchmark* in_benchmark)
+    void BenchmarkSystem::Complete(Benchmark* in_benchmark)
     {
         std::unique_lock<std::mutex> lock(m_mutex);
 
         assert(in_benchmark == m_currentBenchmark);
 
-        m_timer.stop();
+        m_timer.Stop();
         
         BenchmarkReport benchmarkReport;
-        benchmarkReport.m_description = m_currentBenchmark->getDescription();
-        benchmarkReport.m_timeTaken = m_timer.getElapsedTime();
+        benchmarkReport.m_description = m_currentBenchmark->GetDescription();
+        benchmarkReport.m_timeTaken = m_timer.GetElapsedTime();
         m_report.push_back(benchmarkReport);
 
         m_currentBenchmark = nullptr;
@@ -85,7 +85,7 @@ namespace IC
     }
 
     //------------------------------------------------------------------------------
-    void BenchmarkSystem::printReport() const
+    void BenchmarkSystem::PrintReport() const
     {
         std::cout << "Benchmark Results" << std::endl;
         std::cout << "=================" << std::endl;

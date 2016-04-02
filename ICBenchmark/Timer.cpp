@@ -29,29 +29,29 @@
 namespace IC
 {
     //-----------------------------------------------------------------------------
-    Timer::Timer(bool in_startImmediately) noexcept
+    Timer::Timer(bool startImmediately) noexcept
     {
-        if (in_startImmediately == true)
+        if (startImmediately == true)
         {
-            start();
+            Start();
         }
     }
 
     //-----------------------------------------------------------------------------
-    void Timer::start(bool in_reset) noexcept
+    void Timer::Start(bool reset) noexcept
     {
         assert(!m_running);
 
         m_running = true;
 
-        if (in_reset == true)
+        if (reset == true)
         {
             m_start = std::chrono::high_resolution_clock::now();
         }
     }
 
     //-----------------------------------------------------------------------------
-    void Timer::stop() noexcept
+    void Timer::Stop() noexcept
     {
         assert(m_running);
 
@@ -62,7 +62,7 @@ namespace IC
     }
 
     //-----------------------------------------------------------------------------
-    std::uint32_t Timer::getElapsedTime() const noexcept
+    std::uint32_t Timer::GetElapsedTime() const noexcept
     {
         return m_elapsedTime;
     }

@@ -50,12 +50,12 @@ namespace IC
 
         /// Adds a new test of the given type to the benchmark system.
         ///
-        template <typename TType> void createBenchmark();
+        template <typename TType> void CreateBenchmark();
 
         /// Runs all benchmarks until complete. Benchmarks may be multi-threaded
         /// so this will block until the tests are complete.
         ///
-        void runBenchmarks();
+        void RunBenchmarks();
 
     private:
         friend class Benchmark;
@@ -72,12 +72,12 @@ namespace IC
         ///
         /// @param The test to complete.
         ///
-        void complete(Benchmark* in_benchmark);
+        void Complete(Benchmark* in_benchmark);
 
         /// Prints the results of the benchmarks. This is not thread-safe and must
         /// be run while the mutex is held.
         ///
-        void printReport() const;
+        void PrintReport() const;
 
         bool m_running = false;
         Benchmark* m_currentBenchmark = nullptr;
@@ -89,7 +89,7 @@ namespace IC
     };
 
     //------------------------------------------------------------------------------
-    template <typename TType> void BenchmarkSystem::createBenchmark()
+    template <typename TType> void BenchmarkSystem::CreateBenchmark()
     {
         assert(!m_running);
 
