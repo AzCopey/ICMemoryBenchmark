@@ -43,6 +43,12 @@
     <ClCompile Include="ICMemory\String.cpp">
       <Filter>ICMemory</Filter>
     </ClCompile>
+    <ClCompile Include="Benchmarks\LinearLargeAllocationsBenchmark.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\LinearSmallAllocationsBenchmark.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICBenchmark\BenchmarkSystem.h">
@@ -119,6 +125,12 @@
     </ClInclude>
     <ClInclude Include="ICMemory\Vector.h">
       <Filter>ICMemory</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\LinearLargeAllocationsBenchmark.h">
+      <Filter>Benchmarks</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\LinearSmallAllocationsBenchmark.h">
+      <Filter>Benchmarks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

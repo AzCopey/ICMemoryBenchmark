@@ -148,6 +148,8 @@
   <ItemGroup>
     <ClCompile Include="Benchmarks\BuddyLargeAllocationsBenchmark.cpp" />
     <ClCompile Include="Benchmarks\BuddySmallAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\LinearLargeAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\LinearSmallAllocationsBenchmark.cpp" />
     <ClCompile Include="Benchmarks\StandardLargeAllocationsBenchmark.cpp" />
     <ClCompile Include="Benchmarks\StandardSmallAllocationsBenchmark.cpp" />
     <ClCompile Include="ICBenchmark\Benchmark.cpp" />
@@ -161,6 +163,8 @@
   <ItemGroup>
     <ClInclude Include="Benchmarks\BuddyLargeAllocationsBenchmark.h" />
     <ClInclude Include="Benchmarks\BuddySmallAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\LinearLargeAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\LinearSmallAllocationsBenchmark.h" />
     <ClInclude Include="Benchmarks\StandardLargeAllocationsBenchmark.h" />
     <ClInclude Include="Benchmarks\StandardSmallAllocationsBenchmark.h" />
     <ClInclude Include="ICBenchmark\Benchmark.h" />

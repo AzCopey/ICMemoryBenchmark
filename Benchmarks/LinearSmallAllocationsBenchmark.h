@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-01-31
+// Created by Ian Copland on 2016-04-02
 //
 // The MIT License(MIT)
 // 
@@ -22,30 +22,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "ICBenchmark/ICBenchmark.h"
-#include "Benchmarks/BuddyLargeAllocationsBenchmark.h"
-#include "Benchmarks/BuddySmallAllocationsBenchmark.h"
-#include "Benchmarks/LinearLargeAllocationsBenchmark.h"
-#include "Benchmarks/LinearSmallAllocationsBenchmark.h"
-#include "Benchmarks/StandardLargeAllocationsBenchmark.h"
-#include "Benchmarks/StandardSmallAllocationsBenchmark.h"
+#ifndef _IC_LINEARSMALLALLOCATIONSBENCHMARK_H_
+#define _IC_LINEARSMALLALLOCATIONSBENCHMARK_H_
 
-#include <iostream>
+#include "../ICBenchmark/ICBenchmark.h"
+#include "../ICMemory/ICMemory.h"
 
-int main()
+/// A benchmark for testing allocation time with the LinearAllocator.
+///
+class LinearSmallAllocationsBenchmark final : public IC::Benchmark
 {
-    IC::BenchmarkSystem benchmarkSystem;
+public:
+    /// Initialises the benchmark.
+    ///
+    /// @param benchmarkSystem
+    ///     The benchmark system.
+    ///
+    LinearSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
+    
+    /// @return A description of the benchmark.
+    ///
+    std::string GetDescription() const override;
+private:
 
-    benchmarkSystem.CreateBenchmark<StandardSmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<BuddySmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<LinearSmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<StandardLargeAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<BuddyLargeAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<LinearLargeAllocationsBenchmark>();
+    /// Performs the test.
+    ///
+    void Run() override;
 
-    benchmarkSystem.RunBenchmarks();
+    IC::BuddyAllocator m_buddyAllocator;
+    IC::LinearAllocator m_linearAllocator;
+};
 
-    int x = 0;
-    std::cin >> x;
-    return 0;
-}
+#endif
