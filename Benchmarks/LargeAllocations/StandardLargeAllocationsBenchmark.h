@@ -22,31 +22,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _IC_STANDARDLARGEALLOCATIONSBENCHMARK_H_
-#define _IC_STANDARDLARGEALLOCATIONSBENCHMARK_H_
+#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_LARGEALLOCATIONS_STANDARDLARGEALLOCATIONSBENCHMARK_H_
+#define _ICMEMORYBENCHMARK_BENCHMARKS_LARGEALLOCATIONS_STANDARDLARGEALLOCATIONSBENCHMARK_H_
 
-#include "../ICBenchmark/ICBenchmark.h"
+#include "../../ICBenchmark/ICBenchmark.h"
 
-/// A benchmark for testing allocation time with new/delete.
-///
-class StandardLargeAllocationsBenchmark final : public IC::Benchmark
+namespace ICMemoryBenchmark
 {
-public:
-    /// Initialises the benchmark.
+    /// A benchmark for testing allocation time with new/delete.
     ///
-    /// @param benchmarkSystem
-    ///     The benchmark system.
-    ///
-    StandardLargeAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
+    class StandardLargeAllocationsBenchmark final : public IC::Benchmark
+    {
+    public:
+        /// Initialises the benchmark.
+        ///
+        /// @param benchmarkSystem
+        ///     The benchmark system.
+        ///
+        StandardLargeAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
 
-    /// @return The description of the benchmark.
-    ///
-    std::string GetDescription() const override;
-private:
+        /// @return The description of the benchmark.
+        ///
+        std::string GetDescription() const override;
+    private:
 
-    /// Performs the test.
-    ///
-    void Run() override;
-};
+        /// Performs the test.
+        ///
+        void Run() override;
+    };
+}
 
 #endif

@@ -22,35 +22,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _IC_LINEARSMALLALLOCATIONSBENCHMARK_H_
-#define _IC_LINEARSMALLALLOCATIONSBENCHMARK_H_
+#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_LARGEALLOCATIONS_LINEARLARGEALLOCATIONSBENCHMARK_H_
+#define _ICMEMORYBENCHMARK_BENCHMARKS_LARGEALLOCATIONS_LINEARLARGEALLOCATIONSBENCHMARK_H_
 
-#include "../ICBenchmark/ICBenchmark.h"
-#include "../ICMemory/ICMemory.h"
+#include "../../ICBenchmark/ICBenchmark.h"
+#include "../../ICMemory/ICMemory.h"
 
-/// A benchmark for testing allocation time with the LinearAllocator.
-///
-class LinearSmallAllocationsBenchmark final : public IC::Benchmark
+namespace ICMemoryBenchmark
 {
-public:
-    /// Initialises the benchmark.
+    /// A benchmark for testing allocation time with the BuddyAllocator.
     ///
-    /// @param benchmarkSystem
-    ///     The benchmark system.
-    ///
-    LinearSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
-    
-    /// @return A description of the benchmark.
-    ///
-    std::string GetDescription() const override;
-private:
+    class LinearLargeAllocationsBenchmark final : public IC::Benchmark
+    {
+    public:
+        /// Initialises the benchmark.
+        ///
+        /// @param benchmarkSystem
+        ///     The benchmark system.
+        ///
+        LinearLargeAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
 
-    /// Performs the test.
-    ///
-    void Run() override;
+        /// @return A description of the benchmark.
+        ///
+        std::string GetDescription() const override;
+    private:
 
-    IC::BuddyAllocator m_buddyAllocator;
-    IC::LinearAllocator m_linearAllocator;
-};
+        /// Performs the test.
+        ///
+        void Run() override;
+
+        IC::BuddyAllocator m_buddyAllocator;
+        IC::LinearAllocator m_linearAllocator;
+    };
+}
 
 #endif

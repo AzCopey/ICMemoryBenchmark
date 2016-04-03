@@ -146,12 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Benchmarks\BuddyLargeAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\BuddySmallAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\LinearLargeAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\LinearSmallAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\StandardLargeAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\StandardSmallAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\MediumAllocations\BuddyMediumAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\MediumAllocations\LinearMediumAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\MediumAllocations\StandardMediumAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\SmallAllocations\BuddySmallAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\SmallAllocations\LinearSmallAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.cpp" />
     <ClCompile Include="ICBenchmark\Benchmark.cpp" />
     <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp" />
     <ClCompile Include="ICBenchmark\Timer.cpp" />
@@ -161,12 +164,15 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Benchmarks\BuddyLargeAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\BuddySmallAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\LinearLargeAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\LinearSmallAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\StandardLargeAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\StandardSmallAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\MediumAllocations\BuddyMediumAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\MediumAllocations\LinearMediumAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\MediumAllocations\StandardMediumAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\SmallAllocations\BuddySmallAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\SmallAllocations\LinearSmallAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.h" />
     <ClInclude Include="ICBenchmark\Benchmark.h" />
     <ClInclude Include="ICBenchmark\BenchmarkSystem.h" />
     <ClInclude Include="ICBenchmark\ForwardDeclarations.h" />

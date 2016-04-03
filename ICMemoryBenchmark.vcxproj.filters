@@ -10,6 +10,15 @@
     <Filter Include="Benchmarks">
       <UniqueIdentifier>{85f5c937-ccd2-4c32-b84c-e59d39a373c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Benchmarks\SmallAllocations">
+      <UniqueIdentifier>{dc014380-6906-4421-ba5b-188ed55081ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Benchmarks\MediumAllocations">
+      <UniqueIdentifier>{aa52dcf8-b2a8-4194-b533-4877f72e5b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Benchmarks\LargeAllocations">
+      <UniqueIdentifier>{299eb640-dc2d-4794-a7d6-d208a8312247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp">
@@ -22,18 +31,6 @@
     <ClCompile Include="ICBenchmark\Benchmark.cpp">
       <Filter>ICBenchmark</Filter>
     </ClCompile>
-    <ClCompile Include="Benchmarks\BuddyLargeAllocationsBenchmark.cpp">
-      <Filter>Benchmarks</Filter>
-    </ClCompile>
-    <ClCompile Include="Benchmarks\StandardLargeAllocationsBenchmark.cpp">
-      <Filter>Benchmarks</Filter>
-    </ClCompile>
-    <ClCompile Include="Benchmarks\BuddySmallAllocationsBenchmark.cpp">
-      <Filter>Benchmarks</Filter>
-    </ClCompile>
-    <ClCompile Include="Benchmarks\StandardSmallAllocationsBenchmark.cpp">
-      <Filter>Benchmarks</Filter>
-    </ClCompile>
     <ClCompile Include="ICMemory\BuddyAllocator.cpp">
       <Filter>ICMemory</Filter>
     </ClCompile>
@@ -43,11 +40,32 @@
     <ClCompile Include="ICMemory\String.cpp">
       <Filter>ICMemory</Filter>
     </ClCompile>
-    <ClCompile Include="Benchmarks\LinearLargeAllocationsBenchmark.cpp">
-      <Filter>Benchmarks</Filter>
+    <ClCompile Include="Benchmarks\MediumAllocations\BuddyMediumAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\MediumAllocations</Filter>
     </ClCompile>
-    <ClCompile Include="Benchmarks\LinearSmallAllocationsBenchmark.cpp">
-      <Filter>Benchmarks</Filter>
+    <ClCompile Include="Benchmarks\MediumAllocations\LinearMediumAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\MediumAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\MediumAllocations\StandardMediumAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\MediumAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\LargeAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\LargeAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\LargeAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\SmallAllocations\BuddySmallAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\SmallAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\SmallAllocations\LinearSmallAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\SmallAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\SmallAllocations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,18 +83,6 @@
     </ClInclude>
     <ClInclude Include="ICBenchmark\Timer.h">
       <Filter>ICBenchmark</Filter>
-    </ClInclude>
-    <ClInclude Include="Benchmarks\BuddyLargeAllocationsBenchmark.h">
-      <Filter>Benchmarks</Filter>
-    </ClInclude>
-    <ClInclude Include="Benchmarks\StandardLargeAllocationsBenchmark.h">
-      <Filter>Benchmarks</Filter>
-    </ClInclude>
-    <ClInclude Include="Benchmarks\BuddySmallAllocationsBenchmark.h">
-      <Filter>Benchmarks</Filter>
-    </ClInclude>
-    <ClInclude Include="Benchmarks\StandardSmallAllocationsBenchmark.h">
-      <Filter>Benchmarks</Filter>
     </ClInclude>
     <ClInclude Include="ICMemory\AllocatorWrapper.h">
       <Filter>ICMemory</Filter>
@@ -126,11 +132,32 @@
     <ClInclude Include="ICMemory\Vector.h">
       <Filter>ICMemory</Filter>
     </ClInclude>
-    <ClInclude Include="Benchmarks\LinearLargeAllocationsBenchmark.h">
-      <Filter>Benchmarks</Filter>
+    <ClInclude Include="Benchmarks\MediumAllocations\BuddyMediumAllocationsBenchmark.h">
+      <Filter>Benchmarks\MediumAllocations</Filter>
     </ClInclude>
-    <ClInclude Include="Benchmarks\LinearSmallAllocationsBenchmark.h">
-      <Filter>Benchmarks</Filter>
+    <ClInclude Include="Benchmarks\MediumAllocations\LinearMediumAllocationsBenchmark.h">
+      <Filter>Benchmarks\MediumAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\MediumAllocations\StandardMediumAllocationsBenchmark.h">
+      <Filter>Benchmarks\MediumAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.h">
+      <Filter>Benchmarks\LargeAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.h">
+      <Filter>Benchmarks\LargeAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.h">
+      <Filter>Benchmarks\LargeAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\SmallAllocations\BuddySmallAllocationsBenchmark.h">
+      <Filter>Benchmarks\SmallAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\SmallAllocations\LinearSmallAllocationsBenchmark.h">
+      <Filter>Benchmarks\SmallAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.h">
+      <Filter>Benchmarks\SmallAllocations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

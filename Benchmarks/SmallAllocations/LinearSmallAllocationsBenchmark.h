@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-01-31
+// Created by Ian Copland on 2016-04-02
 //
 // The MIT License(MIT)
 // 
@@ -22,31 +22,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _IC_STANDARDSMALLALLOCATIONSBENCHMARK_H_
-#define _IC_STANDARDSMALLALLOCATIONSBENCHMARK_H_
+#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_SMALLALLOCATIONS_LINEARSMALLALLOCATIONSBENCHMARK_H_
+#define _ICMEMORYBENCHMARK_BENCHMARKS_SMALLALLOCATIONS_LINEARSMALLALLOCATIONSBENCHMARK_H_
 
-#include "../ICBenchmark/ICBenchmark.h"
+#include "../../ICBenchmark/ICBenchmark.h"
+#include "../../ICMemory/ICMemory.h"
 
-/// A benchmark for testing allocation time with new/delete.
-///
-class StandardSmallAllocationsBenchmark final : public IC::Benchmark
+namespace ICMemoryBenchmark
 {
-public:
-    /// Initialises the benchmark.
+    /// A benchmark for testing allocation time with the LinearAllocator.
     ///
-    /// @param benchmarkSystem
-    ///     The benchmark system.
-    ///
-    StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
+    class LinearSmallAllocationsBenchmark final : public IC::Benchmark
+    {
+    public:
+        /// Initialises the benchmark.
+        ///
+        /// @param benchmarkSystem
+        ///     The benchmark system.
+        ///
+        LinearSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
 
-    /// @return The description of the benchmark.
-    ///
-    std::string GetDescription() const override;
-private:
+        /// @return A description of the benchmark.
+        ///
+        std::string GetDescription() const override;
+    private:
 
-    /// Performs the test.
-    ///
-    void Run() override;
-};
+        /// Performs the test.
+        ///
+        void Run() override;
+
+        IC::BuddyAllocator m_buddyAllocator;
+        IC::LinearAllocator m_linearAllocator;
+    };
+}
 
 #endif

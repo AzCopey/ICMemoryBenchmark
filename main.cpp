@@ -23,12 +23,15 @@
 // SOFTWARE.
 
 #include "ICBenchmark/ICBenchmark.h"
-#include "Benchmarks/BuddyLargeAllocationsBenchmark.h"
-#include "Benchmarks/BuddySmallAllocationsBenchmark.h"
-#include "Benchmarks/LinearLargeAllocationsBenchmark.h"
-#include "Benchmarks/LinearSmallAllocationsBenchmark.h"
-#include "Benchmarks/StandardLargeAllocationsBenchmark.h"
-#include "Benchmarks/StandardSmallAllocationsBenchmark.h"
+#include "Benchmarks/LargeAllocations/BuddyLargeAllocationsBenchmark.h"
+#include "Benchmarks/LargeAllocations/LinearLargeAllocationsBenchmark.h"
+#include "Benchmarks/LargeAllocations/StandardLargeAllocationsBenchmark.h"
+#include "Benchmarks/MediumAllocations/BuddyMediumAllocationsBenchmark.h"
+#include "Benchmarks/MediumAllocations/LinearMediumAllocationsBenchmark.h"
+#include "Benchmarks/MediumAllocations/StandardMediumAllocationsBenchmark.h"
+#include "Benchmarks/SmallAllocations/BuddySmallAllocationsBenchmark.h"
+#include "Benchmarks/SmallAllocations/LinearSmallAllocationsBenchmark.h"
+#include "Benchmarks/SmallAllocations/StandardSmallAllocationsBenchmark.h"
 
 #include <iostream>
 
@@ -36,12 +39,17 @@ int main()
 {
     IC::BenchmarkSystem benchmarkSystem;
 
-    benchmarkSystem.CreateBenchmark<StandardSmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<BuddySmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<LinearSmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<StandardLargeAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<BuddyLargeAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<LinearLargeAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardSmallAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddySmallAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearSmallAllocationsBenchmark>();
+
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardMediumAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyMediumAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearMediumAllocationsBenchmark>();
+
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardLargeAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyLargeAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearLargeAllocationsBenchmark>();
 
     benchmarkSystem.RunBenchmarks();
 

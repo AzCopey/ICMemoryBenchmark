@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-04-02
+// Created by Ian Copland on 2016-04-03
 //
 // The MIT License(MIT)
 // 
@@ -22,35 +22,37 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _IC_LINEARLARGEALLOCATIONSBENCHMARK_H_
-#define _IC_LINEARLARGEALLOCATIONSBENCHMARK_H_
+#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_BUDDYMEDIUMALLOCATIONSBENCHMARK_H_
+#define _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_BUDDYMEDIUMALLOCATIONSBENCHMARK_H_
 
-#include "../ICBenchmark/ICBenchmark.h"
-#include "../ICMemory/ICMemory.h"
+#include "../../ICBenchmark/ICBenchmark.h"
+#include "../../ICMemory/ICMemory.h"
 
-/// A benchmark for testing allocation time with the BuddyAllocator.
-///
-class LinearLargeAllocationsBenchmark final : public IC::Benchmark
+namespace ICMemoryBenchmark
 {
-public:
-    /// Initialises the benchmark.
+    /// A benchmark for testing allocation time with the BuddyAllocator.
     ///
-    /// @param benchmarkSystem
-    ///     The benchmark system.
-    ///
-    LinearLargeAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
-    
-    /// @return A description of the benchmark.
-    ///
-    std::string GetDescription() const override;
-private:
+    class BuddyMediumAllocationsBenchmark final : public IC::Benchmark
+    {
+    public:
+        /// Initialises the benchmark.
+        ///
+        /// @param benchmarkSystem
+        ///     The benchmark system.
+        ///
+        BuddyMediumAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
 
-    /// Performs the test.
-    ///
-    void Run() override;
+        /// @return A description of the benchmark.
+        ///
+        std::string GetDescription() const override;
+    private:
 
-    IC::BuddyAllocator m_buddyAllocator;
-    IC::LinearAllocator m_linearAllocator;
-};
+        /// Performs the test.
+        ///
+        void Run() override;
+
+        IC::BuddyAllocator m_allocator;
+    };
+}
 
 #endif

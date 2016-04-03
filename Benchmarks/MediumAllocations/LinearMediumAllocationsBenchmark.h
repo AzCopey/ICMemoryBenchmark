@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-01-31
+// Created by Ian Copland on 2016-04-03
 //
 // The MIT License(MIT)
 // 
@@ -22,36 +22,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "StandardSmallAllocationsBenchmark.h"
+#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_LINEARMEDIUMALLOCATIONSBENCHMARK_H_
+#define _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_LINEARMEDIUMALLOCATIONSBENCHMARK_H_
 
-namespace
-{
-    const std::int32_t k_numIterations = 1000000;
-}
+#include "../../ICBenchmark/ICBenchmark.h"
+#include "../../ICMemory/ICMemory.h"
 
-//------------------------------------------------------------------------------
-StandardSmallAllocationsBenchmark::StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem)
-    : Benchmark(benchmarkSystem)
+namespace ICMemoryBenchmark
 {
-}
-
-//------------------------------------------------------------------------------
-std::string StandardSmallAllocationsBenchmark::GetDescription() const
-{
-    return "1,000,000 small allocations with the standard allocator";
-}
-
-//------------------------------------------------------------------------------
-void StandardSmallAllocationsBenchmark::Run()
-{
-    for (int i = 0; i < k_numIterations; ++i)
+    /// A benchmark for testing allocation time with the LinearAllocator.
+    ///
+    class LinearMediumAllocationsBenchmark final : public IC::Benchmark
     {
-        auto a = std::unique_ptr<std::uint32_t>(new uint32_t);
-        auto b = std::unique_ptr<std::uint32_t>(new uint32_t);
-        auto c = std::unique_ptr<std::uint32_t>(new uint32_t);
-        auto d = std::unique_ptr<std::uint32_t>(new uint32_t);
-        auto e = std::unique_ptr<std::uint32_t>(new uint32_t);
-    }
+    public:
+        /// Initialises the benchmark.
+        ///
+        /// @param benchmarkSystem
+        ///     The benchmark system.
+        ///
+        LinearMediumAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
 
-    Complete();
+        /// @return A description of the benchmark.
+        ///
+        std::string GetDescription() const override;
+    private:
+
+        /// Performs the test.
+        ///
+        void Run() override;
+
+        IC::BuddyAllocator m_buddyAllocator;
+        IC::LinearAllocator m_linearAllocator;
+    };
 }
+
+#endif
