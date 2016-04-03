@@ -19,6 +19,9 @@
     <Filter Include="Benchmarks\LargeAllocations">
       <UniqueIdentifier>{299eb640-dc2d-4794-a7d6-d208a8312247}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Benchmarks\ConcurrentAllocations">
+      <UniqueIdentifier>{829e7357-b8c4-4da3-a569-3c2384fc90d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp">
@@ -66,6 +69,15 @@
     </ClCompile>
     <ClCompile Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.cpp">
       <Filter>Benchmarks\SmallAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\ConcurrentAllocations\BuddyConcurrentAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\ConcurrentAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\ConcurrentAllocations\LinearConcurrentAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\ConcurrentAllocations</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\ConcurrentAllocations\StandardConcurrentAllocationsBenchmark.cpp">
+      <Filter>Benchmarks\ConcurrentAllocations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +170,15 @@
     </ClInclude>
     <ClInclude Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.h">
       <Filter>Benchmarks\SmallAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\ConcurrentAllocations\BuddyConcurrentAllocationsBenchmark.h">
+      <Filter>Benchmarks\ConcurrentAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\ConcurrentAllocations\LinearConcurrentAllocationsBenchmark.h">
+      <Filter>Benchmarks\ConcurrentAllocations</Filter>
+    </ClInclude>
+    <ClInclude Include="Benchmarks\ConcurrentAllocations\StandardConcurrentAllocationsBenchmark.h">
+      <Filter>Benchmarks\ConcurrentAllocations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

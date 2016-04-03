@@ -146,6 +146,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Benchmarks\ConcurrentAllocations\BuddyConcurrentAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\ConcurrentAllocations\LinearConcurrentAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\ConcurrentAllocations\StandardConcurrentAllocationsBenchmark.cpp" />
     <ClCompile Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.cpp" />
     <ClCompile Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.cpp" />
     <ClCompile Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.cpp" />
@@ -164,6 +167,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Benchmarks\ConcurrentAllocations\BuddyConcurrentAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\ConcurrentAllocations\LinearConcurrentAllocationsBenchmark.h" />
+    <ClInclude Include="Benchmarks\ConcurrentAllocations\StandardConcurrentAllocationsBenchmark.h" />
     <ClInclude Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.h" />
     <ClInclude Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.h" />
     <ClInclude Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.h" />

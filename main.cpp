@@ -23,6 +23,9 @@
 // SOFTWARE.
 
 #include "ICBenchmark/ICBenchmark.h"
+#include "Benchmarks/ConcurrentAllocations/BuddyConcurrentAllocationsBenchmark.h"
+#include "Benchmarks/ConcurrentAllocations/LinearConcurrentAllocationsBenchmark.h"
+#include "Benchmarks/ConcurrentAllocations/StandardConcurrentAllocationsBenchmark.h"
 #include "Benchmarks/LargeAllocations/BuddyLargeAllocationsBenchmark.h"
 #include "Benchmarks/LargeAllocations/LinearLargeAllocationsBenchmark.h"
 #include "Benchmarks/LargeAllocations/StandardLargeAllocationsBenchmark.h"
@@ -50,6 +53,10 @@ int main()
     benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardLargeAllocationsBenchmark>();
     benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyLargeAllocationsBenchmark>();
     benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearLargeAllocationsBenchmark>();
+
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardConcurrentAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyConcurrentAllocationsBenchmark>();
+    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearConcurrentAllocationsBenchmark>();
 
     benchmarkSystem.RunBenchmarks();
 
