@@ -55,7 +55,7 @@ namespace ICMemoryBenchmark
     {
         for (int i = 0; i < k_numThreads; ++i)
         {
-            m_linearAllocators.push_back(IC::LinearAllocator(m_buddyAllocator, k_linearAllocatorPageSize));
+            m_linearAllocators.push_back(std::unique_ptr<IC::LinearAllocator>(new IC::LinearAllocator(m_buddyAllocator, k_linearAllocatorPageSize)));
         }
     }
 
@@ -74,7 +74,7 @@ namespace ICMemoryBenchmark
         {
             threads.push_back(std::thread([=]()
             {
-                auto& linearAllocator = m_linearAllocators[i];
+                auto& linearAllocator = *m_linearAllocators[i];
 
                 for (int j = 0; j < k_numResets; ++j)
                 {

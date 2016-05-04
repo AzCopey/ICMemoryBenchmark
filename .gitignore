@@ -3,3 +3,4 @@ Debug/
 ICMemoryBenchmark.sdf
 ICMemoryBenchmark.opensdf
 Release/
+*.opendb

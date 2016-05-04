@@ -52,7 +52,7 @@ namespace ICMemoryBenchmark
         void Run() override;
 
         IC::BuddyAllocator m_buddyAllocator;
-        std::vector<IC::LinearAllocator> m_linearAllocators;
+        std::vector<std::unique_ptr<IC::LinearAllocator>> m_linearAllocators;
     };
 }
 
