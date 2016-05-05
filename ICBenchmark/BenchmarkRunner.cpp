@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-04-03
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
@@ -22,38 +22,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_CONCURRENTALLOCATIONS_LINEARCONCURRENTALLOCATIONSBENCHMARK_H_
-#define _ICMEMORYBENCHMARK_BENCHMARKS_CONCURRENTALLOCATIONS_LINEARCONCURRENTALLOCATIONSBENCHMARK_H_
+#include "BenchmarkRunner.h"
 
-#include "../../ICBenchmark/ICBenchmark.h"
-#include "../../ICMemory/ICMemory.h"
-
-namespace ICMemoryBenchmark
+namespace IC
 {
-    /// A benchmark for testing allocation time with the LinearAllocator.
-    ///
-    class LinearConcurrentAllocationsBenchmark final : public IC::Benchmark
-    {
-    public:
-        /// Initialises the benchmark.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        LinearConcurrentAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
-
-        /// @return A description of the benchmark.
-        ///
-        std::string GetDescription() const override;
-    private:
-
-        /// Performs the test.
-        ///
-        void Run() override;
-
-        IC::BuddyAllocator m_buddyAllocator;
-        std::vector<std::unique_ptr<IC::LinearAllocator>> m_linearAllocators;
-    };
+	namespace BenchmarkRunner
+	{
+		//------------------------------------------------------------------------------
+		BenchmarkReport Run() noexcept
+		{
+			return BenchmarkReport(std::vector<BenchmarkReport::BenchmarkGroup>());
+		}
+	}
 }
-
-#endif

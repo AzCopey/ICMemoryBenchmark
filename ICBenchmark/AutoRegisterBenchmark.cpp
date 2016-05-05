@@ -1,8 +1,8 @@
-// Created by Ian Copland on 2016-04-02
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
-// Copyright(c) 2016 Ian Copland
+// Copyright(c) 2015 Ian Copland
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files(the "Software"), to deal
@@ -22,38 +22,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_SMALLALLOCATIONS_LINEARSMALLALLOCATIONSBENCHMARK_H_
-#define _ICMEMORYBENCHMARK_BENCHMARKS_SMALLALLOCATIONS_LINEARSMALLALLOCATIONSBENCHMARK_H_
+#include "AutoRegisterBenchmark.h"
 
-#include "../../ICBenchmark/ICBenchmark.h"
-#include "../../ICMemory/ICMemory.h"
+#include "BenchmarkRegistry.h"
 
-namespace ICMemoryBenchmark
+namespace IC
 {
-    /// A benchmark for testing allocation time with the LinearAllocator.
-    ///
-    class LinearSmallAllocationsBenchmark final : public IC::Benchmark
-    {
-    public:
-        /// Initialises the benchmark.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        LinearSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
-
-        /// @return A description of the benchmark.
-        ///
-        std::string GetDescription() const override;
-    private:
-
-        /// Performs the test.
-        ///
-        void Run() override;
-
-        IC::BuddyAllocator m_buddyAllocator;
-        IC::LinearAllocator m_linearAllocator;
-    };
+	//------------------------------------------------------------------------------
+	AutoRegisterBenchmark::AutoRegisterBenchmark(const Benchmark& benchmark) noexcept
+	{
+		BenchmarkRegistry::Get().RegisterBenchmark(benchmark);
+	}
 }
-
-#endif

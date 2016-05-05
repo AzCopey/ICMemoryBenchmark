@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-01-31
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
@@ -27,58 +27,57 @@
 
 #include "ForwardDeclarations.h"
 
-#include <memory>
-#include <queue>
+#include <functional>
 #include <string>
 
 namespace IC
 {
-    /// A single performance benchmark. The test() method should be overriden to
-    /// include performance critical code. Once this code has finished, the complete()
-    /// method should be called. The time taken between test() and complete() being
-    /// called will be stored and compared to other tests.
-    ///
-    /// Note that construction and destruction will not be included in the output time,
-    /// so any setup/cleanup should be performed in the constructor/destructor.
-    ///
-    /// This is thread-safe.
-    ///
-    class Benchmark
-    {
-    public:
-        /// Constructs a new benchmark with the given reference to the benchmark system.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        Benchmark(BenchmarkSystem& benchmarkSystem);
+	/// An immutable description of a single Benchmark, including the name of
+	/// the benchmark and benchmark group, and the function that should be
+	/// called to execute the benchmark.
+	///
+	/// Benchmarks should be created using the macros defined in BenchmarkGroup.h
+	///
+	/// This is thread-safe.
+	///
+	class Benchmark final
+	{
+	public:
+		/// The function that should be called to perform the benchmark.
+		///
+		/// @param timer
+		///		The timer which should be used to time the benchmark.
+		///
+		using BenchmarkDelegate = std::function<void(Timer& timer) noexcept>;
 
-        /// This must be thread-safe.
-        ///
-        /// @return A description for the benchmark.
-        ///
-        virtual std::string GetDescription() const = 0;
+		/// Creates a new instance of the benchmark.
+		///
+		/// @param benchmarkGroupName
+		///		The name of the group this benchmark belongs to.
+		/// @param benchmarkName
+		///		The name of this benchmark.
+		/// @param benchmarkDelegate
+		///		The function which will be executed to perform the benchmark.
+		///
+		Benchmark(const std::string& benchmarkGroupName, const std::string& benchmarkName, const BenchmarkDelegate& benchmarkDelegate) noexcept;
 
-        virtual ~Benchmark() { };
+		/// @return The name of the benchmark group.
+		///
+		const std::string& GetBenchmarkGroupName() const noexcept { return m_benchmarkGroupName; }
 
-    protected:
-        friend class BenchmarkSystem;
+		/// @return The name of the benchmark.
+		///
+		const std::string& GetBenchmarkName() const noexcept { return m_benchmarkName; }
 
-        /// Runs a benchmark test. This should be overridden to include performance
-        /// critical code. Once the code has finished executing, complete() should
-        /// be called. The test can be multi-threaded, in which case complete() will
-        /// be called after the the test() method has finished running().
-        ///
-        virtual void Run() = 0;
+		/// @return The function which should be executed to perform the benchmark.
+		///
+		const BenchmarkDelegate& GetBenchmarkDelegate() const noexcept { return m_benchmarkDelegate; }
 
-        /// Completes the current test. This is thread-safe, but should only be called
-        /// while a benchmark test is active.
-        ///
-        void Complete();
-
-    private:
-        BenchmarkSystem& m_benchmarkSystem;
-    };
+	private:
+		std::string m_benchmarkGroupName;
+		std::string m_benchmarkName;
+		BenchmarkDelegate m_benchmarkDelegate;
+	};
 }
 
 #endif

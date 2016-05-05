@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-04-03
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
@@ -22,37 +22,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_BUDDYMEDIUMALLOCATIONSBENCHMARK_H_
-#define _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_BUDDYMEDIUMALLOCATIONSBENCHMARK_H_
+#include "BenchmarkReport.h"
 
-#include "../../ICBenchmark/ICBenchmark.h"
-#include "../../ICMemory/ICMemory.h"
-
-namespace ICMemoryBenchmark
+namespace IC
 {
-    /// A benchmark for testing allocation time with the BuddyAllocator.
-    ///
-    class BuddyMediumAllocationsBenchmark final : public IC::Benchmark
-    {
-    public:
-        /// Initialises the benchmark.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        BuddyMediumAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
+	//------------------------------------------------------------------------------
+	BenchmarkReport::Benchmark::Benchmark(const std::string& name, float timeTaken) noexcept
+		: m_name(name), m_timeTaken(timeTaken)
+	{
+	}
 
-        /// @return A description of the benchmark.
-        ///
-        std::string GetDescription() const override;
-    private:
+	//------------------------------------------------------------------------------
+	BenchmarkReport::BenchmarkGroup::BenchmarkGroup(const std::string& name, const std::vector<Benchmark>& benchmarks) noexcept
+		: m_name(name), m_benchmarks(benchmarks)
+	{
+	}
 
-        /// Performs the test.
-        ///
-        void Run() override;
-
-        IC::BuddyAllocator m_allocator;
-    };
+	//------------------------------------------------------------------------------
+	BenchmarkReport::BenchmarkReport(const std::vector<BenchmarkGroup>& benchmarkGroups) noexcept
+		: m_benchmarkGroups(benchmarkGroups)
+	{
+	}
 }
-
-#endif

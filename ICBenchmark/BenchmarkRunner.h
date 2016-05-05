@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-04-03
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
@@ -22,38 +22,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_LINEARMEDIUMALLOCATIONSBENCHMARK_H_
-#define _ICMEMORYBENCHMARK_BENCHMARKS_MEDIUMALLOCATIONS_LINEARMEDIUMALLOCATIONSBENCHMARK_H_
+#ifndef _ICBENCHMARK_BENCHMARKRUNNER_H_
+#define _ICBENCHMARK_BENCHMARKRUNNER_H_
 
-#include "../../ICBenchmark/ICBenchmark.h"
-#include "../../ICMemory/ICMemory.h"
+#include "BenchmarkReport.h"
 
-namespace ICMemoryBenchmark
+namespace IC
 {
-    /// A benchmark for testing allocation time with the LinearAllocator.
-    ///
-    class LinearMediumAllocationsBenchmark final : public IC::Benchmark
-    {
-    public:
-        /// Initialises the benchmark.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        LinearMediumAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
-
-        /// @return A description of the benchmark.
-        ///
-        std::string GetDescription() const override;
-    private:
-
-        /// Performs the test.
-        ///
-        void Run() override;
-
-        IC::BuddyAllocator m_buddyAllocator;
-        IC::LinearAllocator m_linearAllocator;
-    };
+	/// A container for functions for running benchmarks.
+	///
+	/// This is not thread-safe.
+	///
+	namespace BenchmarkRunner
+	{
+		/// Collects all benchmarks currently registered with the BenchmarkRegistry
+		/// and runs them one by one. Once complete a report is compiled and returned.
+		///
+		/// @return A report detailing the results of the benchmarks.
+		///
+		BenchmarkReport Run() noexcept;
+	}
 }
 
 #endif

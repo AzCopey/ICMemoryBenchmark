@@ -146,20 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Benchmarks\ConcurrentAllocations\BuddyConcurrentAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\ConcurrentAllocations\LinearConcurrentAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\ConcurrentAllocations\StandardConcurrentAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\MediumAllocations\BuddyMediumAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\MediumAllocations\LinearMediumAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\MediumAllocations\StandardMediumAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\SmallAllocations\BuddySmallAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\SmallAllocations\LinearSmallAllocationsBenchmark.cpp" />
-    <ClCompile Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.cpp" />
+    <ClCompile Include="Benchmarks\SmallAllocations.cpp" />
+    <ClCompile Include="ICBenchmark\AutoRegisterBenchmark.cpp" />
     <ClCompile Include="ICBenchmark\Benchmark.cpp" />
-    <ClCompile Include="ICBenchmark\BenchmarkSystem.cpp" />
+    <ClCompile Include="ICBenchmark\BenchmarkRegistry.cpp" />
+    <ClCompile Include="ICBenchmark\BenchmarkReport.cpp" />
+    <ClCompile Include="ICBenchmark\BenchmarkRunner.cpp" />
     <ClCompile Include="ICBenchmark\Timer.cpp" />
     <ClCompile Include="ICMemory\Allocator\BuddyAllocator.cpp" />
     <ClCompile Include="ICMemory\Allocator\LinearAllocator.cpp" />
@@ -167,22 +159,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Benchmarks\ConcurrentAllocations\BuddyConcurrentAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\ConcurrentAllocations\LinearConcurrentAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\ConcurrentAllocations\StandardConcurrentAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\LargeAllocations\BuddyLargeAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\LargeAllocations\LinearLargeAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\LargeAllocations\StandardLargeAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\MediumAllocations\BuddyMediumAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\MediumAllocations\LinearMediumAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\MediumAllocations\StandardMediumAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\SmallAllocations\BuddySmallAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\SmallAllocations\LinearSmallAllocationsBenchmark.h" />
-    <ClInclude Include="Benchmarks\SmallAllocations\StandardSmallAllocationsBenchmark.h" />
+    <ClInclude Include="ICBenchmark\AutoRegisterBenchmark.h" />
     <ClInclude Include="ICBenchmark\Benchmark.h" />
-    <ClInclude Include="ICBenchmark\BenchmarkSystem.h" />
+    <ClInclude Include="ICBenchmark\BenchmarkGroup.h" />
+    <ClInclude Include="ICBenchmark\BenchmarkRegistry.h" />
+    <ClInclude Include="ICBenchmark\BenchmarkReport.h" />
     <ClInclude Include="ICBenchmark\ForwardDeclarations.h" />
     <ClInclude Include="ICBenchmark\ICBenchmark.h" />
+    <ClInclude Include="ICBenchmark\BenchmarkRunner.h" />
     <ClInclude Include="ICBenchmark\Timer.h" />
     <ClInclude Include="ICMemory\Allocator\AllocatorWrapper.h" />
     <ClInclude Include="ICMemory\Allocator\AllocatorWrapperImpl.h" />

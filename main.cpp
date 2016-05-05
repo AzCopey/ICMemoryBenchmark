@@ -23,44 +23,16 @@
 // SOFTWARE.
 
 #include "ICBenchmark/ICBenchmark.h"
-#include "Benchmarks/ConcurrentAllocations/BuddyConcurrentAllocationsBenchmark.h"
-#include "Benchmarks/ConcurrentAllocations/LinearConcurrentAllocationsBenchmark.h"
-#include "Benchmarks/ConcurrentAllocations/StandardConcurrentAllocationsBenchmark.h"
-#include "Benchmarks/LargeAllocations/BuddyLargeAllocationsBenchmark.h"
-#include "Benchmarks/LargeAllocations/LinearLargeAllocationsBenchmark.h"
-#include "Benchmarks/LargeAllocations/StandardLargeAllocationsBenchmark.h"
-#include "Benchmarks/MediumAllocations/BuddyMediumAllocationsBenchmark.h"
-#include "Benchmarks/MediumAllocations/LinearMediumAllocationsBenchmark.h"
-#include "Benchmarks/MediumAllocations/StandardMediumAllocationsBenchmark.h"
-#include "Benchmarks/SmallAllocations/BuddySmallAllocationsBenchmark.h"
-#include "Benchmarks/SmallAllocations/LinearSmallAllocationsBenchmark.h"
-#include "Benchmarks/SmallAllocations/StandardSmallAllocationsBenchmark.h"
 
 #include <iostream>
 
 int main()
 {
-    IC::BenchmarkSystem benchmarkSystem;
+	IC::BenchmarkRunner::Run();
 
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardSmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddySmallAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearSmallAllocationsBenchmark>();
-
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardMediumAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyMediumAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearMediumAllocationsBenchmark>();
-
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardLargeAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyLargeAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearLargeAllocationsBenchmark>();
-
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::StandardConcurrentAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::BuddyConcurrentAllocationsBenchmark>();
-    benchmarkSystem.CreateBenchmark<ICMemoryBenchmark::LinearConcurrentAllocationsBenchmark>();
-
-    benchmarkSystem.RunBenchmarks();
-
+	//Wait for input before ending.
     int x = 0;
     std::cin >> x;
+
     return 0;
 }

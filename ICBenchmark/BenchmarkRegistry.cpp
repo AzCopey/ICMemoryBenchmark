@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-01-31
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
@@ -22,33 +22,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_SMALLALLOCATIONS_STANDARDSMALLALLOCATIONSBENCHMARK_H_
-#define _ICMEMORYBENCHMARK_BENCHMARKS_SMALLALLOCATIONS_STANDARDSMALLALLOCATIONSBENCHMARK_H_
+#include "BenchmarkRegistry.h"
 
-#include "../../ICBenchmark/ICBenchmark.h"
-
-namespace ICMemoryBenchmark
+namespace IC
 {
-    /// A benchmark for testing allocation time with new/delete.
-    ///
-    class StandardSmallAllocationsBenchmark final : public IC::Benchmark
-    {
-    public:
-        /// Initialises the benchmark.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        StandardSmallAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
+	//------------------------------------------------------------------------------
+	BenchmarkRegistry& BenchmarkRegistry::Get() noexcept
+	{
+		static BenchmarkRegistry s_benchmarkRegistry;
+		return s_benchmarkRegistry;
+	}
 
-        /// @return The description of the benchmark.
-        ///
-        std::string GetDescription() const override;
-    private:
-
-        /// Performs the test.
-        ///
-        void Run() override;
-    };
+	//------------------------------------------------------------------------------
+	void BenchmarkRegistry::RegisterBenchmark(const Benchmark& benchmark) noexcept
+	{
+		m_benchmarks.push_back(benchmark);
+	}
 }
-#endif

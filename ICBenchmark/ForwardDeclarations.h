@@ -27,8 +27,10 @@
 
 namespace IC
 {
+	class AutoRegisterBenchmark;
     class Benchmark;
-    class BenchmarkSystem;
+	class BenchmarkRegister;
+	class BenchmarkReport;
     class Timer;
 }
 

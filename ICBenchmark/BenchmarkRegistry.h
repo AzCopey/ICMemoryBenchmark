@@ -22,13 +22,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#ifndef _ICBENCHMARK_BENCHMARKREGISTERY_H_
+#define _ICBENCHMARK_BENCHMARKREGISTERY_H_
+
 #include "Benchmark.h"
+
+#include <vector>
 
 namespace IC
 {
-	//------------------------------------------------------------------------------
-	Benchmark::Benchmark(const std::string& benchmarkGroupName, const std::string& benchmarkName, const BenchmarkDelegate& benchmarkDelegate) noexcept
-		: m_benchmarkGroupName(benchmarkGroupName), m_benchmarkName(benchmarkName), m_benchmarkDelegate(benchmarkDelegate)
-	{
-	}
+    /// A singleton which contains a list of all registered benchmarks. Typically
+	/// all tests are registered during static initialisation time via the macros
+	/// declared in BenchmarkGroup.h.
+	///
+	/// This is not thread-safe.
+    ///
+    class BenchmarkRegistry final
+    {
+    public:
+        /// @return The singleton instance of the BenchmarkRegistry.
+        ///
+		static BenchmarkRegistry& Get() noexcept;
+
+		/// Adds a new benchmark to the registry.
+		///
+		/// @param benchmark
+		///		The benchmark which should be added to the registry.
+		///
+		void RegisterBenchmark(const Benchmark& benchmark) noexcept;
+
+		/// @return The list of all currently registered benchmarks.
+		///
+		const std::vector<Benchmark>& GetBenchmarks() const noexcept { return m_benchmarks; }
+
+	private:
+		BenchmarkRegistry() = default;
+		BenchmarkRegistry(const BenchmarkRegistry&) = delete;
+		BenchmarkRegistry& operator=(const BenchmarkRegistry&) = delete;
+		BenchmarkRegistry(BenchmarkRegistry&&) = delete;
+		BenchmarkRegistry& operator=(BenchmarkRegistry&&) = delete;
+
+		std::vector<Benchmark> m_benchmarks;
+    };
 }
+
+#endif

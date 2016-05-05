@@ -1,8 +1,8 @@
-// Created by Ian Copland on 2016-04-03
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
-// Copyright(c) 2016 Ian Copland
+// Copyright(c) 2015 Ian Copland
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files(the "Software"), to deal
@@ -22,33 +22,31 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#ifndef _ICMEMORYBENCHMARK_BENCHMARKS_CONCURRENTALLOCATIONS_STANDARDCONCURRENTALLOCATIONSBENCHMARK_H_
-#define _ICMEMORYBENCHMARK_BENCHMARKS_CONCURRENTALLOCATIONS_STANDARDCONCURRENTALLOCATIONSBENCHMARK_H_
+#ifndef _ICBENCHMARK_AUTOREGISTERBENCHMARK_H_
+#define _ICBENCHMARK_AUTOREGISTERBENCHMARK_H_
 
-#include "../../ICBenchmark/ICBenchmark.h"
+#include "ForwardDeclarations.h"
 
-namespace ICMemoryBenchmark
+namespace IC
 {
-    /// A benchmark for testing allocation time with new/delete.
+    /// This is used to automatically register the wrapped Benchmark with the 
+	/// BenchmarkRegistry. This is typically handled via the macros declared in
+	/// BenchmarkGroup.h.
+	///
+	/// This is not thread safe.
     ///
-    class StandardConcurrentAllocationsBenchmark final : public IC::Benchmark
+    class AutoRegisterBenchmark final
     {
     public:
-        /// Initialises the benchmark.
-        ///
-        /// @param benchmarkSystem
-        ///     The benchmark system.
-        ///
-        StandardConcurrentAllocationsBenchmark(IC::BenchmarkSystem& benchmarkSystem);
+		AutoRegisterBenchmark() = default;
 
-        /// @return The description of the benchmark.
-        ///
-        std::string GetDescription() const override;
-    private:
-
-        /// Performs the test.
-        ///
-        void Run() override;
+		/// Creates new instance and adds the given benchmark to the registry.
+		///
+		/// @param benchmark
+		///		The benchmark which should be registered.
+		///
+		AutoRegisterBenchmark(const Benchmark& benchmark) noexcept;
     };
 }
+
 #endif

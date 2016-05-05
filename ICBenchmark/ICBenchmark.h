@@ -25,8 +25,11 @@
 #ifndef _ICBENCHMARK_ICBENCHMARK_H_
 #define _ICBENCHMARK_ICBENCHMARK_H_
 
+#include "AutoRegisterBenchmark.h"
 #include "Benchmark.h"
-#include "BenchmarkSystem.h"
-#include "Timer.h"
+#include "BenchmarkGroup.h"
+#include "BenchmarkRegistry.h"
+#include "BenchmarkReport.h"
+#include "BenchmarkRunner.h"
 
 #endif
