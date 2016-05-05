@@ -23,15 +23,71 @@
 // SOFTWARE.
 
 #include "BenchmarkRunner.h"
+#include "BenchmarkRegistry.h"
+#include "Timer.h"
+
+#include <unordered_map>
 
 namespace IC
 {
 	namespace BenchmarkRunner
 	{
+		namespace
+		{
+			/// Executes the given benchmark and returns a report detailing the time taken in milliseconds.
+			///
+			/// @param benchmark
+			///		The benchmark that should be run.
+			///
+			/// @return A report on the result of the given benchmark.
+			///
+			BenchmarkReport::Benchmark RunBenchmark(const Benchmark& benchmark)
+			{
+				Timer timer(false);
+
+				benchmark.GetBenchmarkDelegate()(timer);
+
+				if (timer.IsRunning())
+				{
+					timer.Stop();
+				}
+
+				return BenchmarkReport::Benchmark(benchmark.GetBenchmarkName(), timer.GetElapsedTime());
+			}
+
+			/// Compiles the given results data into a benchmark report.
+			///
+			/// @param results
+			///		The results data map.
+			///
+			/// @return The compiled report.
+			///
+			BenchmarkReport GenerateReport(const std::unordered_map<std::string, std::vector<BenchmarkReport::Benchmark>>& results)
+			{
+				std::vector<BenchmarkReport::BenchmarkGroup> benchmarkGroupReports;
+
+				for (const auto& result : results)
+				{
+					benchmarkGroupReports.push_back(BenchmarkReport::BenchmarkGroup(result.first, result.second));
+				}
+
+				return benchmarkGroupReports;
+			}
+		}
+
 		//------------------------------------------------------------------------------
 		BenchmarkReport Run() noexcept
 		{
-			return BenchmarkReport(std::vector<BenchmarkReport::BenchmarkGroup>());
+			auto benchmarks = BenchmarkRegistry::Get().GetBenchmarks();
+
+			std::unordered_map<std::string, std::vector<BenchmarkReport::Benchmark>> benchmarkResults;
+
+			for (const auto& benchmark : benchmarks)
+			{
+				benchmarkResults[benchmark.GetBenchmarkGroupName()].push_back(RunBenchmark(benchmark));
+			}
+
+			return GenerateReport(benchmarkResults);
 		}
 	}
 }

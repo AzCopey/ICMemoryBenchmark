@@ -26,9 +26,23 @@
 
 #include <iostream>
 
+/// Reports the results of the exectuted benchmarks to the output stream.
+///
+/// @param report
+///		A report detailing the results of the benchmark.
+///
+void ReportResults(IC::BenchmarkReport& report)
+{
+	//TODO: Contine here.
+}
+
+/// The entry point to the application.
+///
 int main()
 {
-	IC::BenchmarkRunner::Run();
+	auto report = IC::BenchmarkRunner::Run();
+
+	ReportResults(report);
 
 	//Wait for input before ending.
     int x = 0;

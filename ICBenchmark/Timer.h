@@ -49,6 +49,10 @@ namespace IC
         ///
         Timer(bool startImmediately = true) noexcept;
 
+		/// @return Wehther or not the timer is currently running.
+		///
+		bool IsRunning() const noexcept { return m_running; }
+
         /// Starts the timer running. This is only needed if re-starting the timer
         /// or false was passed during construction. By default the timer will be
         /// reset when restarting, if resuming the timer is desired false can be

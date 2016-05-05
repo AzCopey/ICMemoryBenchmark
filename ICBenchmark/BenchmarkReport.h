@@ -61,13 +61,13 @@ namespace IC
 			///
 			const std::string& GetName() const noexcept { return m_name; }
 
-			/// @return The time in seconds that the benchmark took to complete.
+			/// @return The time in milliseconds that the benchmark took to complete.
 			///
-			float GetTimeTaken() const noexcept { return m_timeTaken; }
+			std::uint32_t GetTimeTaken() const noexcept { return m_timeTaken; }
 
 		private:
 			std::string m_name;
-			float m_timeTaken = 0.0f;
+			std::uint32_t m_timeTaken;
 		};
 
 		/// Contains report data pertaining to a benchmark group.
