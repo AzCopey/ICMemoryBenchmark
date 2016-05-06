@@ -136,5 +136,67 @@ namespace ICMemoryBenchmark
 
 			IC_STOPTIMER();
 		}
+
+		/// Performs the benchmark with ObjectPools
+		///
+		IC_BENCHMARK(ObjectPool)
+		{
+			constexpr std::size_t k_poolSize = 16;
+
+			IC::ObjectPool<std::uint32_t> int32Pool(k_poolSize);
+			IC::ObjectPool<std::uint64_t> int64Pool(k_poolSize);
+			IC::ObjectPool<SmallStruct> smallStructPool(k_poolSize);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = int32Pool.Create();
+				auto b = int64Pool.Create();
+				auto e = smallStructPool.Create();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with PagedObjectPools
+		///
+		IC_BENCHMARK(PagedObjectPool)
+		{
+			constexpr std::size_t k_poolSize = 16;
+
+			IC::PagedObjectPool<std::uint32_t> int32Pool(k_poolSize);
+			IC::PagedObjectPool<std::uint64_t> int64Pool(k_poolSize);
+			IC::PagedObjectPool<SmallStruct> smallStructPool(k_poolSize);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = int32Pool.Create();
+				auto b = int64Pool.Create();
+				auto e = smallStructPool.Create();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a SmallObjectPool
+		///
+		IC_BENCHMARK(SmallObjectPool)
+		{
+			IC::SmallObjectPool pool;
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = pool.Create<std::uint32_t>();
+				auto b = pool.Create<std::uint64_t>();
+				auto e = pool.Create<SmallStruct>();
+			}
+
+			IC_STOPTIMER();
+		}
 	}
 }

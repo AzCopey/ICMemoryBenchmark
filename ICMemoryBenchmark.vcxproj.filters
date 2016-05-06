@@ -19,6 +19,9 @@
     <Filter Include="Benchmarks">
       <UniqueIdentifier>{023176ed-6f2a-40cc-ad45-005f9148e767}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ICMemory\Pool">
+      <UniqueIdentifier>{7e06c3f8-ca2f-426b-9ab8-5b72d2339727}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -60,6 +63,9 @@
     </ClCompile>
     <ClCompile Include="Benchmarks\ConcurrentAllocations.cpp">
       <Filter>Benchmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="ICMemory\Pool\SmallObjectPool.cpp">
+      <Filter>ICMemory\Pool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +176,24 @@
     </ClInclude>
     <ClInclude Include="ICBenchmark\BenchmarkReport.h">
       <Filter>ICBenchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Pool\ObjectPool.h">
+      <Filter>ICMemory\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Pool\ObjectPoolImpl.h">
+      <Filter>ICMemory\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Pool\PagedObjectPool.h">
+      <Filter>ICMemory\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Pool\PagedObjectPoolImpl.h">
+      <Filter>ICMemory\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Pool\SmallObjectPool.h">
+      <Filter>ICMemory\Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Pool\SmallObjectPoolImpl.h">
+      <Filter>ICMemory\Pool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
