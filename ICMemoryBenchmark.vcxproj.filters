@@ -58,6 +58,9 @@
     <ClCompile Include="Benchmarks\LargeAllocations.cpp">
       <Filter>Benchmarks</Filter>
     </ClCompile>
+    <ClCompile Include="Benchmarks\ConcurrentAllocations.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICMemory\ForwardDeclarations.h">
