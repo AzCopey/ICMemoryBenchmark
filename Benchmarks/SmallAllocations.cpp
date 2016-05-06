@@ -137,6 +137,26 @@ namespace ICMemoryBenchmark
 			IC_STOPTIMER();
 		}
 
+		/// Performs the benchmark with a SmallObjectAllocator
+		///
+		IC_BENCHMARK(SmallObjectAllocator)
+		{
+			constexpr std::size_t k_allocatorSize = 1024;
+
+			IC::SmallObjectAllocator allocator(k_allocatorSize);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = IC::MakeUnique<std::uint32_t>(allocator);
+				auto b = IC::MakeUnique<std::uint64_t>(allocator);
+				auto c = IC::MakeUnique<SmallStruct>(allocator);
+			}
+
+			IC_STOPTIMER();
+		}
+
 		/// Performs the benchmark with ObjectPools
 		///
 		IC_BENCHMARK(ObjectPool)
@@ -176,24 +196,6 @@ namespace ICMemoryBenchmark
 				auto a = int32Pool.Create();
 				auto b = int64Pool.Create();
 				auto e = smallStructPool.Create();
-			}
-
-			IC_STOPTIMER();
-		}
-
-		/// Performs the benchmark with a SmallObjectPool
-		///
-		IC_BENCHMARK(SmallObjectPool)
-		{
-			IC::SmallObjectPool pool;
-
-			IC_STARTTIMER();
-
-			for (int i = 0; i < k_numIterations; ++i)
-			{
-				auto a = pool.Create<std::uint32_t>();
-				auto b = pool.Create<std::uint64_t>();
-				auto e = pool.Create<SmallStruct>();
 			}
 
 			IC_STOPTIMER();
