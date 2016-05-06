@@ -26,19 +26,49 @@
 
 #include <iostream>
 
+/// Prints a bar of the given lenth to standard out.
+///
+/// @param length
+///		The bar length.
+///
+void PrintBar(std::size_t length) noexcept
+{
+	for (std::size_t i = 0; i <length; ++i)
+	{
+		std::cout << "-";
+	}
+
+	std::cout << std::endl;
+}
+
 /// Reports the results of the exectuted benchmarks to the output stream.
 ///
 /// @param report
 ///		A report detailing the results of the benchmark.
 ///
-void ReportResults(IC::BenchmarkReport& report)
+void ReportResults(IC::BenchmarkReport& report) noexcept
 {
-	//TODO: Contine here.
+	std::cout << "Benchmark Results" << std::endl;
+	std::cout << "=================" << std::endl;
+	std::cout << std::endl;
+
+	for (const auto& benchmarkGroup : report.GetBenchmarkGroups())
+	{
+		std::cout << benchmarkGroup.GetName() << std::endl;
+		PrintBar(benchmarkGroup.GetName().size());
+
+		for (const auto& benchmark : benchmarkGroup.GetBenchmarks())
+		{
+			std::cout << benchmark.GetName() << ": " << benchmark.GetTimeTaken() << "ms" << std::endl;
+		}
+
+		std::cout << std::endl;
+	}
 }
 
 /// The entry point to the application.
 ///
-int main()
+int main() noexcept
 {
 	auto report = IC::BenchmarkRunner::Run();
 

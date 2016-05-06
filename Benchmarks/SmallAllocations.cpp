@@ -1,4 +1,4 @@
-// Created by Ian Copland on 2016-01-31
+// Created by Ian Copland on 2016-05-05
 //
 // The MIT License(MIT)
 // 
@@ -42,11 +42,12 @@ namespace ICMemoryBenchmark
 		};
 	}
 
-	/// TODO
+	/// A benchmark for measuring the time taken to perform a large number of small 
+	/// allocations with various allocators and pools.
 	///
 	IC_BENCHMARKGROUP(SmallAllocations)
 	{
-		/// TODO
+		/// Performs the benchmark with the standard allocator.
 		///
 		IC_BENCHMARK(StandardAllocator)
 		{
@@ -62,7 +63,7 @@ namespace ICMemoryBenchmark
 			IC_STOPTIMER();
 		}
 
-		/// TODO
+		/// Performs the benchmark with a BuddyAllocator.
 		///
 		IC_BENCHMARK(BuddyAllocator)
 		{
@@ -82,27 +83,55 @@ namespace ICMemoryBenchmark
 			IC_STOPTIMER();
 		}
 
-		/// TODO
+		/// Performs the benchmark with a LinearAllocator.
 		///
 		IC_BENCHMARK(LinearAllocator)
 		{
-			constexpr std::size_t k_resetFrequency = 10;
+			constexpr std::size_t k_resetFrequency = 10; //Note: This should divide into k_numIterations with no remainder.
+			constexpr std::size_t k_numResets = k_numIterations / k_resetFrequency;
 
 			IC::LinearAllocator allocator;
 
 			IC_STARTTIMER();
 
-			for (int i = 0; i < k_numIterations; ++i)
+			for (int i = 0; i < k_numResets; ++i)
 			{
-				auto a = IC::MakeUnique<std::uint32_t>(allocator);
-				auto b = IC::MakeUnique<std::uint64_t>(allocator);
-				auto e = IC::MakeUnique<SmallStruct>(allocator);
-
-				//TODO: This can probably be written more efficiently.
-				if (i % k_resetFrequency == 0)
+				for (int j = 0; j < k_resetFrequency; ++j)
 				{
-					allocator.Reset();
+					auto a = IC::MakeUnique<std::uint32_t>(allocator);
+					auto b = IC::MakeUnique<std::uint64_t>(allocator);
+					auto e = IC::MakeUnique<SmallStruct>(allocator);
 				}
+
+				allocator.Reset();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a LinearAllocator backed by a BuddyAllocator
+		///
+		IC_BENCHMARK(LinearAllocatorBackedByBuddyAllocator)
+		{
+			constexpr std::size_t k_buddyAllocatorSize = 128 * 1024;
+			constexpr std::size_t k_resetFrequency = 10; //Note: This should divide into k_numIterations with no remainder.
+			constexpr std::size_t k_numResets = k_numIterations / k_resetFrequency;
+
+			IC::BuddyAllocator buddyAllocator(k_buddyAllocatorSize);
+			IC::LinearAllocator linearAllocator(buddyAllocator);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numResets; ++i)
+			{
+				for (int j = 0; j < k_resetFrequency; ++j)
+				{
+					auto a = IC::MakeUnique<std::uint32_t>(linearAllocator);
+					auto b = IC::MakeUnique<std::uint64_t>(linearAllocator);
+					auto e = IC::MakeUnique<SmallStruct>(linearAllocator);
+				}
+
+				linearAllocator.Reset();
 			}
 
 			IC_STOPTIMER();

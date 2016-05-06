@@ -52,6 +52,12 @@
     <ClCompile Include="ICBenchmark\BenchmarkReport.cpp">
       <Filter>ICBenchmark</Filter>
     </ClCompile>
+    <ClCompile Include="Benchmarks\MediumAllocations.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
+    <ClCompile Include="Benchmarks\LargeAllocations.cpp">
+      <Filter>Benchmarks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICMemory\ForwardDeclarations.h">

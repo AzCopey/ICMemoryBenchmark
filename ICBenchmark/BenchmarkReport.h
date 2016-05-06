@@ -53,9 +53,9 @@ namespace IC
 			/// @param name
 			///		The name of the benchmark.
 			/// @param timeTimen
-			///		The time in seconds that the benchmark took to complete.
+			///		The time in milliseconds that the benchmark took to complete.
 			///
-			Benchmark(const std::string& name, float timeTaken) noexcept;
+			Benchmark(const std::string& name, std::uint32_t timeTaken) noexcept;
 
 			/// @return The name of the benchmark.
 			///

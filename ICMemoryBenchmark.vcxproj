@@ -146,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Benchmarks\LargeAllocations.cpp" />
+    <ClCompile Include="Benchmarks\MediumAllocations.cpp" />
     <ClCompile Include="Benchmarks\SmallAllocations.cpp" />
     <ClCompile Include="ICBenchmark\AutoRegisterBenchmark.cpp" />
     <ClCompile Include="ICBenchmark\Benchmark.cpp" />

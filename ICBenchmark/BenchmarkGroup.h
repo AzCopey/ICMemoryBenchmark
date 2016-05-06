@@ -54,14 +54,12 @@
 	} \
 	void benchmarkName##Benchmark_(IC::Timer& timer_) noexcept
 
-/// Starts the timer within a benchmark.
+/// Starts the timer within a benchmark. This must be called within a benchmark.
 ///
 #define IC_STARTTIMER() \
 	timer_.Start();
 
-/// Stops the timer within a benchmark. This is optional as the timer will be
-/// automatically stopped when the benchmark returns. Usually this is used when
-/// shutdown code should be  excluded from the benchmark time.
+/// Stops the timer within a benchmark. This must be called within a benchmark.
 ///
 #define IC_STOPTIMER() \
 	timer_.Stop();

@@ -27,7 +27,7 @@
 namespace IC
 {
 	//------------------------------------------------------------------------------
-	BenchmarkReport::Benchmark::Benchmark(const std::string& name, float timeTaken) noexcept
+	BenchmarkReport::Benchmark::Benchmark(const std::string& name, std::uint32_t timeTaken) noexcept
 		: m_name(name), m_timeTaken(timeTaken)
 	{
 	}

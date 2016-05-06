@@ -26,6 +26,7 @@
 #include "BenchmarkRegistry.h"
 #include "Timer.h"
 
+#include <cassert>
 #include <unordered_map>
 
 namespace IC
@@ -46,11 +47,7 @@ namespace IC
 				Timer timer(false);
 
 				benchmark.GetBenchmarkDelegate()(timer);
-
-				if (timer.IsRunning())
-				{
-					timer.Stop();
-				}
+				assert(!timer.IsRunning());
 
 				return BenchmarkReport::Benchmark(benchmark.GetBenchmarkName(), timer.GetElapsedTime());
 			}
