@@ -73,6 +73,9 @@
     <ClCompile Include="ICMemory\Allocator\SmallObjectAllocator.cpp">
       <Filter>ICMemory\Allocator</Filter>
     </ClCompile>
+    <ClCompile Include="ICMemory\Allocator\PagedLinearAllocator.cpp">
+      <Filter>ICMemory\Allocator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ICMemory\ForwardDeclarations.h">
@@ -202,6 +205,9 @@
       <Filter>ICMemory\Allocator</Filter>
     </ClInclude>
     <ClInclude Include="ICMemory\Allocator\SmallObjectAllocator.h">
+      <Filter>ICMemory\Allocator</Filter>
+    </ClInclude>
+    <ClInclude Include="ICMemory\Allocator\PagedLinearAllocator.h">
       <Filter>ICMemory\Allocator</Filter>
     </ClInclude>
   </ItemGroup>

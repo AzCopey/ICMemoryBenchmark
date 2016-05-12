@@ -30,7 +30,7 @@ namespace ICMemoryBenchmark
 	namespace
 	{
 		constexpr std::int32_t k_numIterations = 10000;
-		constexpr std::int32_t k_allocationSize = 10 * 1024 * 1024;
+		constexpr std::int32_t k_allocationSize = 8 * 1024 * 1024;
 	}
 
 	/// A benchmark for measuring the time taken to perform a large number of large 
@@ -60,10 +60,9 @@ namespace ICMemoryBenchmark
 		///
 		IC_BENCHMARK(BuddyAllocator)
 		{
-			constexpr std::int32_t k_allocatorSize = 128 * 1024 * 1024;
-			constexpr std::int32_t k_allocatorMinBlockSize = 1024;
+			constexpr std::int32_t k_allocatorSize = 64 * 1024 * 1024;
 
-			IC::BuddyAllocator allocator(k_allocatorSize, k_allocatorMinBlockSize);
+			IC::BuddyAllocator allocator(k_allocatorSize, k_allocationSize);
 
 			IC_STARTTIMER();
 
@@ -91,11 +90,13 @@ namespace ICMemoryBenchmark
 
 			for (int i = 0; i < k_numIterations; ++i)
 			{
-				auto a = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
-				auto b = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
-				auto c = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
-				auto d = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
-				auto e = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				{
+					auto a = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto b = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto c = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto d = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto e = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				}
 
 				allocator.Reset();
 			}
@@ -103,28 +104,71 @@ namespace ICMemoryBenchmark
 			IC_STOPTIMER();
 		}
 
-		/// Performs the benchmark with a LinearAllocator backed by a BuddyAllocator
+		/// Performs the benchmark with a PagedLinearAllocator.
 		///
-		IC_BENCHMARK(LinearAllocatorBackedByBuddyAllocator)
+		IC_BENCHMARK(PagedLinearAllocator)
 		{
-			constexpr std::int32_t k_buddyAllocatorSize = 128 * 1024 * 1024;
-			constexpr std::int32_t k_buddyAllocatorMinBlockSize = 64 * 1024 * 1024;
-			constexpr std::int32_t k_linearAllocatorPageSize = 64 * 1024 * 1024;
+			constexpr std::int32_t k_pageSize = 64 * 1024 * 1024;
 
-			IC::BuddyAllocator buddyAllocator(k_buddyAllocatorSize, k_buddyAllocatorMinBlockSize);
-			IC::LinearAllocator linearAllocator(buddyAllocator, k_linearAllocatorPageSize);
+			IC::PagedLinearAllocator allocator(k_pageSize);
 
 			IC_STARTTIMER();
 
 			for (int i = 0; i < k_numIterations; ++i)
 			{
-				auto a = IC::MakeUniqueArray<std::uint8_t>(linearAllocator, k_allocationSize);
-				auto b = IC::MakeUniqueArray<std::uint8_t>(linearAllocator, k_allocationSize);
-				auto c = IC::MakeUniqueArray<std::uint8_t>(linearAllocator, k_allocationSize);
-				auto d = IC::MakeUniqueArray<std::uint8_t>(linearAllocator, k_allocationSize);
-				auto e = IC::MakeUniqueArray<std::uint8_t>(linearAllocator, k_allocationSize);
+				{
+					auto a = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto b = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto c = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto d = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+					auto e = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				}
 
-				linearAllocator.Reset();
+				allocator.Reset();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a BlockAllocator.
+		///
+		IC_BENCHMARK(BlockAllocator)
+		{
+			constexpr std::int32_t k_numBlocks = 5;
+
+			IC::BlockAllocator allocator(k_allocationSize, k_numBlocks);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto b = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto c = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto d = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto e = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a PagedBlockAllocator.
+		///
+		IC_BENCHMARK(PagedBlockAllocator)
+		{
+			constexpr std::int32_t k_numBlocks = 5;
+
+			IC::PagedBlockAllocator allocator(k_allocationSize, k_numBlocks);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto b = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto c = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto d = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
+				auto e = IC::MakeUniqueArray<std::uint8_t>(allocator, k_allocationSize);
 			}
 
 			IC_STOPTIMER();

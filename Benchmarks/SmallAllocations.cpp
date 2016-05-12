@@ -57,7 +57,7 @@ namespace ICMemoryBenchmark
 			{
 				auto a = std::unique_ptr<std::uint32_t>(new uint32_t);
 				auto b = std::unique_ptr<std::uint64_t>(new uint64_t);
-				auto e = std::unique_ptr<SmallStruct>(new SmallStruct());
+				auto c = std::unique_ptr<SmallStruct>(new SmallStruct());
 			}
 
 			IC_STOPTIMER();
@@ -67,7 +67,7 @@ namespace ICMemoryBenchmark
 		///
 		IC_BENCHMARK(BuddyAllocator)
 		{
-			constexpr std::size_t k_allocatorSize = 4096;
+			constexpr std::size_t k_allocatorSize = 4 * 1024;
 
 			IC::BuddyAllocator allocator(k_allocatorSize);
 
@@ -77,7 +77,7 @@ namespace ICMemoryBenchmark
 			{
 				auto a = IC::MakeUnique<std::uint32_t>(allocator);
 				auto b = IC::MakeUnique<std::uint64_t>(allocator);
-				auto e = IC::MakeUnique<SmallStruct>(allocator);
+				auto c = IC::MakeUnique<SmallStruct>(allocator);
 			}
 
 			IC_STOPTIMER();
@@ -87,20 +87,18 @@ namespace ICMemoryBenchmark
 		///
 		IC_BENCHMARK(LinearAllocator)
 		{
-			constexpr std::size_t k_resetFrequency = 10; //Note: This should divide into k_numIterations with no remainder.
-			constexpr std::size_t k_numResets = k_numIterations / k_resetFrequency;
+			constexpr std::size_t k_allocatorSize = 4 * 1024;
 
-			IC::LinearAllocator allocator;
+			IC::LinearAllocator allocator(k_allocatorSize);
 
 			IC_STARTTIMER();
 
-			for (int i = 0; i < k_numResets; ++i)
+			for (int i = 0; i < k_numIterations; ++i)
 			{
-				for (int j = 0; j < k_resetFrequency; ++j)
 				{
 					auto a = IC::MakeUnique<std::uint32_t>(allocator);
 					auto b = IC::MakeUnique<std::uint64_t>(allocator);
-					auto e = IC::MakeUnique<SmallStruct>(allocator);
+					auto c = IC::MakeUnique<SmallStruct>(allocator);
 				}
 
 				allocator.Reset();
@@ -109,29 +107,67 @@ namespace ICMemoryBenchmark
 			IC_STOPTIMER();
 		}
 
-		/// Performs the benchmark with a LinearAllocator backed by a BuddyAllocator
+		/// Performs the benchmark with a PagedLinearAllocator.
 		///
-		IC_BENCHMARK(LinearAllocatorBackedByBuddyAllocator)
+		IC_BENCHMARK(PagedLinearAllocator)
 		{
-			constexpr std::size_t k_buddyAllocatorSize = 128 * 1024;
-			constexpr std::size_t k_resetFrequency = 10; //Note: This should divide into k_numIterations with no remainder.
-			constexpr std::size_t k_numResets = k_numIterations / k_resetFrequency;
+			constexpr std::size_t k_allocatorSize = 4 * 1024;
 
-			IC::BuddyAllocator buddyAllocator(k_buddyAllocatorSize);
-			IC::LinearAllocator linearAllocator(buddyAllocator);
+			IC::PagedLinearAllocator allocator(k_allocatorSize);
 
 			IC_STARTTIMER();
 
-			for (int i = 0; i < k_numResets; ++i)
+			for (int i = 0; i < k_numIterations; ++i)
 			{
-				for (int j = 0; j < k_resetFrequency; ++j)
 				{
-					auto a = IC::MakeUnique<std::uint32_t>(linearAllocator);
-					auto b = IC::MakeUnique<std::uint64_t>(linearAllocator);
-					auto e = IC::MakeUnique<SmallStruct>(linearAllocator);
+					auto a = IC::MakeUnique<std::uint32_t>(allocator);
+					auto b = IC::MakeUnique<std::uint64_t>(allocator);
+					auto c = IC::MakeUnique<SmallStruct>(allocator);
 				}
 
-				linearAllocator.Reset();
+				allocator.Reset();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a BlockAllocator
+		///
+		IC_BENCHMARK(BlockAllocator)
+		{
+			constexpr std::size_t k_blockSize = 48;
+			constexpr std::size_t k_numBlocks = 3;
+
+			IC::BlockAllocator allocator(k_blockSize, k_numBlocks);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = IC::MakeUnique<std::uint32_t>(allocator);
+				auto b = IC::MakeUnique<std::uint64_t>(allocator);
+				auto c = IC::MakeUnique<SmallStruct>(allocator);
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a PagedBlockAllocator
+		///
+		IC_BENCHMARK(PagedBlockAllocator)
+		{
+			constexpr std::size_t k_blockSize = 48;
+			constexpr std::size_t k_numBlocks = 3;
+
+			IC::PagedBlockAllocator allocator(k_blockSize, k_numBlocks);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = IC::MakeUnique<std::uint32_t>(allocator);
+				auto b = IC::MakeUnique<std::uint64_t>(allocator);
+				auto c = IC::MakeUnique<SmallStruct>(allocator);
 			}
 
 			IC_STOPTIMER();

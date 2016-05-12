@@ -26,6 +26,7 @@
 #include "BenchmarkRegistry.h"
 #include "Timer.h"
 
+#include <algorithm>
 #include <cassert>
 #include <unordered_map>
 
@@ -65,7 +66,14 @@ namespace IC
 
 				for (const auto& result : results)
 				{
-					benchmarkGroupReports.push_back(BenchmarkReport::BenchmarkGroup(result.first, result.second));
+					auto benchmarks = result.second;
+
+					std::sort(benchmarks.begin(), benchmarks.end(), [](const BenchmarkReport::Benchmark& a, const BenchmarkReport::Benchmark& b)
+					{
+						return a.GetTimeTaken() < b.GetTimeTaken();
+					});
+
+					benchmarkGroupReports.push_back(BenchmarkReport::BenchmarkGroup(result.first, benchmarks));
 				}
 
 				return benchmarkGroupReports;
