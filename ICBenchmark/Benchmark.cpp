@@ -26,9 +26,9 @@
 
 namespace IC
 {
-	//------------------------------------------------------------------------------
-	Benchmark::Benchmark(const std::string& benchmarkGroupName, const std::string& benchmarkName, const BenchmarkDelegate& benchmarkDelegate) noexcept
-		: m_benchmarkGroupName(benchmarkGroupName), m_benchmarkName(benchmarkName), m_benchmarkDelegate(benchmarkDelegate)
-	{
-	}
+    //------------------------------------------------------------------------------
+    Benchmark::Benchmark(const std::string& benchmarkGroupName, const std::string& benchmarkName, const BenchmarkDelegate& benchmarkDelegate) noexcept
+        : m_benchmarkGroupName(benchmarkGroupName), m_benchmarkName(benchmarkName), m_benchmarkDelegate(benchmarkDelegate)
+    {
+    }
 }

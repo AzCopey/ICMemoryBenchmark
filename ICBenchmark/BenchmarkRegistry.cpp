@@ -26,16 +26,16 @@
 
 namespace IC
 {
-	//------------------------------------------------------------------------------
-	BenchmarkRegistry& BenchmarkRegistry::Get() noexcept
-	{
-		static BenchmarkRegistry s_benchmarkRegistry;
-		return s_benchmarkRegistry;
-	}
+    //------------------------------------------------------------------------------
+    BenchmarkRegistry& BenchmarkRegistry::Get() noexcept
+    {
+        static BenchmarkRegistry s_benchmarkRegistry;
+        return s_benchmarkRegistry;
+    }
 
-	//------------------------------------------------------------------------------
-	void BenchmarkRegistry::RegisterBenchmark(const Benchmark& benchmark) noexcept
-	{
-		m_benchmarks.push_back(benchmark);
-	}
+    //------------------------------------------------------------------------------
+    void BenchmarkRegistry::RegisterBenchmark(const Benchmark& benchmark) noexcept
+    {
+        m_benchmarks.push_back(benchmark);
+    }
 }

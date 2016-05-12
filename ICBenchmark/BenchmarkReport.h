@@ -32,87 +32,87 @@
 
 namespace IC
 {
-	/// A container for all information pertaining the results of a series of
-	/// benchmarks. Benchmarks are compiled into a series of groups for ease
-	/// of reporting.
-	///
-	/// This is immutable and therefore thread-safe.
-	///
-	class BenchmarkReport final
-	{
-	public:
-		/// Contains report data pertaining to a single benchmark.
-		///
-		/// This is immutable and therefore thread-safe.
-		///
-		class Benchmark final
-		{
-		public:
-			/// Creates a new instance with the given name and time taken.
-			///
-			/// @param name
-			///		The name of the benchmark.
-			/// @param timeTimen
-			///		The time in milliseconds that the benchmark took to complete.
-			///
-			Benchmark(const std::string& name, std::uint32_t timeTaken) noexcept;
+    /// A container for all information pertaining the results of a series of
+    /// benchmarks. Benchmarks are compiled into a series of groups for ease
+    /// of reporting.
+    ///
+    /// This is immutable and therefore thread-safe.
+    ///
+    class BenchmarkReport final
+    {
+    public:
+        /// Contains report data pertaining to a single benchmark.
+        ///
+        /// This is immutable and therefore thread-safe.
+        ///
+        class Benchmark final
+        {
+        public:
+            /// Creates a new instance with the given name and time taken.
+            ///
+            /// @param name
+            ///        The name of the benchmark.
+            /// @param timeTimen
+            ///        The time in milliseconds that the benchmark took to complete.
+            ///
+            Benchmark(const std::string& name, std::uint32_t timeTaken) noexcept;
 
-			/// @return The name of the benchmark.
-			///
-			const std::string& GetName() const noexcept { return m_name; }
+            /// @return The name of the benchmark.
+            ///
+            const std::string& GetName() const noexcept { return m_name; }
 
-			/// @return The time in milliseconds that the benchmark took to complete.
-			///
-			std::uint32_t GetTimeTaken() const noexcept { return m_timeTaken; }
+            /// @return The time in milliseconds that the benchmark took to complete.
+            ///
+            std::uint32_t GetTimeTaken() const noexcept { return m_timeTaken; }
 
-		private:
-			std::string m_name;
-			std::uint32_t m_timeTaken;
-		};
+        private:
+            std::string m_name;
+            std::uint32_t m_timeTaken;
+        };
 
-		/// Contains report data pertaining to a benchmark group.
-		///
-		/// This is immutable and therefore thread-safe.
-		///
-		class BenchmarkGroup final
-		{
-		public:
-			/// Creates a new instance with the given name and benchmark list.
-			///
-			/// @param name
-			///		The name of the benchmark group.
-			/// @param benchmarks
-			///		A list containing data on the benchmarks that make up this group.
-			/// 
-			BenchmarkGroup(const std::string& name, const std::vector<Benchmark>& benchmarks) noexcept;
+        /// Contains report data pertaining to a benchmark group.
+        ///
+        /// This is immutable and therefore thread-safe.
+        ///
+        class BenchmarkGroup final
+        {
+        public:
+            /// Creates a new instance with the given name and benchmark list.
+            ///
+            /// @param name
+            ///        The name of the benchmark group.
+            /// @param benchmarks
+            ///        A list containing data on the benchmarks that make up this group.
+            /// 
+            BenchmarkGroup(const std::string& name, const std::vector<Benchmark>& benchmarks) noexcept;
 
-			/// @return The name of the benchmark group.
-			///
-			const std::string& GetName() const noexcept { return m_name; }
+            /// @return The name of the benchmark group.
+            ///
+            const std::string& GetName() const noexcept { return m_name; }
 
-			/// @return A list containing data on the benchmarks that make up this group. 
-			///
-			const std::vector<Benchmark>& GetBenchmarks() const noexcept { return m_benchmarks; }
+            /// @return A list containing data on the benchmarks that make up this group. 
+            ///
+            const std::vector<Benchmark>& GetBenchmarks() const noexcept { return m_benchmarks; }
 
-		private:
-			std::string m_name;
-			std::vector<Benchmark> m_benchmarks;
-		};
+        private:
+            std::string m_name;
+            std::vector<Benchmark> m_benchmarks;
+        };
 
-		/// Creates a new instance with the given list of benchmark groups.
-		///
-		/// @param benchmarkGroups
-		///		A list containing data on the benchmark groups.
-		///
-		BenchmarkReport(const std::vector<BenchmarkGroup>& benchmarkGroups) noexcept;
+        /// Creates a new instance with the given list of benchmark groups.
+        ///
+        /// @param benchmarkGroups
+        ///        A list containing data on the benchmark groups.
+        ///
+        BenchmarkReport(const std::vector<BenchmarkGroup>& benchmarkGroups) noexcept;
 
-		/// @return A list containing data on the benchmark groups.
-		///
-		const std::vector<BenchmarkGroup>& GetBenchmarkGroups() const noexcept { return m_benchmarkGroups; }
+        /// @return A list containing data on the benchmark groups.
+        ///
+        const std::vector<BenchmarkGroup>& GetBenchmarkGroups() const noexcept { return m_benchmarkGroups; }
 
-	private:
-		std::vector<BenchmarkGroup> m_benchmarkGroups;
-	};
+    private:
+        std::vector<BenchmarkGroup> m_benchmarkGroups;
+    };
 }
 
 #endif

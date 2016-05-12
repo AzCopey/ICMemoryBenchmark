@@ -44,14 +44,14 @@ namespace IC
         /// false is passed to the contructor.
         ///
         /// @param startImmediately
-        ///		Whether or not the timer should be started immediately. Defaults to
-        ///		True.
+        ///        Whether or not the timer should be started immediately. Defaults to
+        ///        True.
         ///
         Timer(bool startImmediately = true) noexcept;
 
-		/// @return Wehther or not the timer is currently running.
-		///
-		bool IsRunning() const noexcept { return m_running; }
+        /// @return Wehther or not the timer is currently running.
+        ///
+        bool IsRunning() const noexcept { return m_running; }
 
         /// Starts the timer running. This is only needed if re-starting the timer
         /// or false was passed during construction. By default the timer will be
@@ -59,7 +59,7 @@ namespace IC
         /// passed in. This will assert if the Timer is already running when called.
         ///
         /// @param reset
-        ///		Whether or not the timer should be reset. Defaults to true.
+        ///        Whether or not the timer should be reset. Defaults to true.
         ///
         void Start(bool reset = true) noexcept;
 

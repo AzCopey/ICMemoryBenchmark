@@ -32,52 +32,52 @@
 
 namespace IC
 {
-	/// An immutable description of a single Benchmark, including the name of
-	/// the benchmark and benchmark group, and the function that should be
-	/// called to execute the benchmark.
-	///
-	/// Benchmarks should be created using the macros defined in BenchmarkGroup.h
-	///
-	/// This is thread-safe.
-	///
-	class Benchmark final
-	{
-	public:
-		/// The function that should be called to perform the benchmark.
-		///
-		/// @param timer
-		///		The timer which should be used to time the benchmark.
-		///
-		using BenchmarkDelegate = std::function<void(Timer& timer) noexcept>;
+    /// An immutable description of a single Benchmark, including the name of
+    /// the benchmark and benchmark group, and the function that should be
+    /// called to execute the benchmark.
+    ///
+    /// Benchmarks should be created using the macros defined in BenchmarkGroup.h
+    ///
+    /// This is thread-safe.
+    ///
+    class Benchmark final
+    {
+    public:
+        /// The function that should be called to perform the benchmark.
+        ///
+        /// @param timer
+        ///        The timer which should be used to time the benchmark.
+        ///
+        using BenchmarkDelegate = std::function<void(Timer& timer) noexcept>;
 
-		/// Creates a new instance of the benchmark.
-		///
-		/// @param benchmarkGroupName
-		///		The name of the group this benchmark belongs to.
-		/// @param benchmarkName
-		///		The name of this benchmark.
-		/// @param benchmarkDelegate
-		///		The function which will be executed to perform the benchmark.
-		///
-		Benchmark(const std::string& benchmarkGroupName, const std::string& benchmarkName, const BenchmarkDelegate& benchmarkDelegate) noexcept;
+        /// Creates a new instance of the benchmark.
+        ///
+        /// @param benchmarkGroupName
+        ///        The name of the group this benchmark belongs to.
+        /// @param benchmarkName
+        ///        The name of this benchmark.
+        /// @param benchmarkDelegate
+        ///        The function which will be executed to perform the benchmark.
+        ///
+        Benchmark(const std::string& benchmarkGroupName, const std::string& benchmarkName, const BenchmarkDelegate& benchmarkDelegate) noexcept;
 
-		/// @return The name of the benchmark group.
-		///
-		const std::string& GetBenchmarkGroupName() const noexcept { return m_benchmarkGroupName; }
+        /// @return The name of the benchmark group.
+        ///
+        const std::string& GetBenchmarkGroupName() const noexcept { return m_benchmarkGroupName; }
 
-		/// @return The name of the benchmark.
-		///
-		const std::string& GetBenchmarkName() const noexcept { return m_benchmarkName; }
+        /// @return The name of the benchmark.
+        ///
+        const std::string& GetBenchmarkName() const noexcept { return m_benchmarkName; }
 
-		/// @return The function which should be executed to perform the benchmark.
-		///
-		const BenchmarkDelegate& GetBenchmarkDelegate() const noexcept { return m_benchmarkDelegate; }
+        /// @return The function which should be executed to perform the benchmark.
+        ///
+        const BenchmarkDelegate& GetBenchmarkDelegate() const noexcept { return m_benchmarkDelegate; }
 
-	private:
-		std::string m_benchmarkGroupName;
-		std::string m_benchmarkName;
-		BenchmarkDelegate m_benchmarkDelegate;
-	};
+    private:
+        std::string m_benchmarkGroupName;
+        std::string m_benchmarkName;
+        BenchmarkDelegate m_benchmarkDelegate;
+    };
 }
 
 #endif

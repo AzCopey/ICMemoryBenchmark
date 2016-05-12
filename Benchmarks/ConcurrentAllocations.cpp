@@ -30,88 +30,88 @@
 
 namespace ICMemoryBenchmark
 {
-	namespace
-	{
-		constexpr std::int32_t k_numThreads = 8;
-		constexpr std::int32_t k_numIterationsPerThread = 1000000;
+    namespace
+    {
+        constexpr std::int32_t k_numThreads = 8;
+        constexpr std::int32_t k_numIterationsPerThread = 1000000;
 
-		/// A small example struct.
-		///
-		struct SmallStruct final
-		{
-			std::uint32_t m_a;
-			std::uint64_t m_b;
-			std::uint32_t m_c;
-			std::uint64_t m_d;
-		};
+        /// A small example struct.
+        ///
+        struct SmallStruct final
+        {
+            std::uint32_t m_a;
+            std::uint64_t m_b;
+            std::uint32_t m_c;
+            std::uint64_t m_d;
+        };
 
-	}
+    }
 
-	/// A benchmark for measuring the time taken to perform a large number of
-	/// allocations concurrently.
-	///
-	IC_BENCHMARKGROUP(ConcurrentAllocations)
-	{
-		/// Performs the benchmark with the standard allocator.
-		///
-		IC_BENCHMARK(StandardAllocator)
-		{
-			std::vector<std::thread> threads;
+    /// A benchmark for measuring the time taken to perform a large number of
+    /// allocations concurrently.
+    ///
+    IC_BENCHMARKGROUP(ConcurrentAllocations)
+    {
+        /// Performs the benchmark with the standard allocator.
+        ///
+        IC_BENCHMARK(StandardAllocator)
+        {
+            std::vector<std::thread> threads;
 
-			IC_STARTTIMER();
+            IC_STARTTIMER();
 
-			for (int i = 0; i < k_numThreads; ++i)
-			{
-				threads.push_back(std::thread([]()
-				{
-					for (int j = 0; j < k_numIterationsPerThread; ++j)
-					{
-						auto a = std::unique_ptr<std::uint32_t>(new uint32_t);
-						auto b = std::unique_ptr<std::uint64_t>(new uint64_t);
-						auto e = std::unique_ptr<SmallStruct>(new SmallStruct());
-					}
-				}));
-			}
+            for (int i = 0; i < k_numThreads; ++i)
+            {
+                threads.push_back(std::thread([]()
+                {
+                    for (int j = 0; j < k_numIterationsPerThread; ++j)
+                    {
+                        auto a = std::unique_ptr<std::uint32_t>(new uint32_t);
+                        auto b = std::unique_ptr<std::uint64_t>(new uint64_t);
+                        auto e = std::unique_ptr<SmallStruct>(new SmallStruct());
+                    }
+                }));
+            }
 
-			for (auto& thread : threads)
-			{
-				thread.join();
-			}
+            for (auto& thread : threads)
+            {
+                thread.join();
+            }
 
-			IC_STOPTIMER();
-		}
+            IC_STOPTIMER();
+        }
 
-		/// Performs the benchmark with a BuddyAllocator.
-		///
-		IC_BENCHMARK(BuddyAllocator)
-		{
-			constexpr std::size_t k_allocatorSize = 4 * 1024;
+        /// Performs the benchmark with a BuddyAllocator.
+        ///
+        IC_BENCHMARK(BuddyAllocator)
+        {
+            constexpr std::size_t k_allocatorSize = 4 * 1024;
 
-			IC::BuddyAllocator allocator(k_allocatorSize);
+            IC::BuddyAllocator allocator(k_allocatorSize);
 
-			std::vector<std::thread> threads;
+            std::vector<std::thread> threads;
 
-			IC_STARTTIMER();
+            IC_STARTTIMER();
 
-			for (int i = 0; i < k_numThreads; ++i)
-			{
-				threads.push_back(std::thread([&allocator]()
-				{
-					for (int j = 0; j < k_numIterationsPerThread; ++j)
-					{
-						auto a = IC::MakeUnique<std::uint32_t>(allocator);
-						auto b = IC::MakeUnique<std::uint64_t>(allocator);
-						auto c = IC::MakeUnique<SmallStruct>(allocator);
-					}
-				}));
-			}
+            for (int i = 0; i < k_numThreads; ++i)
+            {
+                threads.push_back(std::thread([&allocator]()
+                {
+                    for (int j = 0; j < k_numIterationsPerThread; ++j)
+                    {
+                        auto a = IC::MakeUnique<std::uint32_t>(allocator);
+                        auto b = IC::MakeUnique<std::uint64_t>(allocator);
+                        auto c = IC::MakeUnique<SmallStruct>(allocator);
+                    }
+                }));
+            }
 
-			for (auto& thread : threads)
-			{
-				thread.join();
-			}
+            for (auto& thread : threads)
+            {
+                thread.join();
+            }
 
-			IC_STOPTIMER();
-		}
-	}
+            IC_STOPTIMER();
+        }
+    }
 }

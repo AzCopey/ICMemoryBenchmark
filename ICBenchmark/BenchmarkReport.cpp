@@ -26,21 +26,21 @@
 
 namespace IC
 {
-	//------------------------------------------------------------------------------
-	BenchmarkReport::Benchmark::Benchmark(const std::string& name, std::uint32_t timeTaken) noexcept
-		: m_name(name), m_timeTaken(timeTaken)
-	{
-	}
+    //------------------------------------------------------------------------------
+    BenchmarkReport::Benchmark::Benchmark(const std::string& name, std::uint32_t timeTaken) noexcept
+        : m_name(name), m_timeTaken(timeTaken)
+    {
+    }
 
-	//------------------------------------------------------------------------------
-	BenchmarkReport::BenchmarkGroup::BenchmarkGroup(const std::string& name, const std::vector<Benchmark>& benchmarks) noexcept
-		: m_name(name), m_benchmarks(benchmarks)
-	{
-	}
+    //------------------------------------------------------------------------------
+    BenchmarkReport::BenchmarkGroup::BenchmarkGroup(const std::string& name, const std::vector<Benchmark>& benchmarks) noexcept
+        : m_name(name), m_benchmarks(benchmarks)
+    {
+    }
 
-	//------------------------------------------------------------------------------
-	BenchmarkReport::BenchmarkReport(const std::vector<BenchmarkGroup>& benchmarkGroups) noexcept
-		: m_benchmarkGroups(benchmarkGroups)
-	{
-	}
+    //------------------------------------------------------------------------------
+    BenchmarkReport::BenchmarkReport(const std::vector<BenchmarkGroup>& benchmarkGroups) noexcept
+        : m_benchmarkGroups(benchmarkGroups)
+    {
+    }
 }

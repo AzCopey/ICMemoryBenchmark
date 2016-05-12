@@ -29,19 +29,19 @@
 
 namespace IC
 {
-	/// A container for functions for running benchmarks.
-	///
-	/// This is not thread-safe.
-	///
-	namespace BenchmarkRunner
-	{
-		/// Collects all benchmarks currently registered with the BenchmarkRegistry
-		/// and runs them one by one. Once complete a report is compiled and returned.
-		///
-		/// @return A report detailing the results of the benchmarks.
-		///
-		BenchmarkReport Run() noexcept;
-	}
+    /// A container for functions for running benchmarks.
+    ///
+    /// This is not thread-safe.
+    ///
+    namespace BenchmarkRunner
+    {
+        /// Collects all benchmarks currently registered with the BenchmarkRegistry
+        /// and runs them one by one. Once complete a report is compiled and returned.
+        ///
+        /// @return A report detailing the results of the benchmarks.
+        ///
+        BenchmarkReport Run() noexcept;
+    }
 }
 
 #endif

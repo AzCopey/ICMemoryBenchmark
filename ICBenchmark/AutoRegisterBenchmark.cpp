@@ -28,9 +28,9 @@
 
 namespace IC
 {
-	//------------------------------------------------------------------------------
-	AutoRegisterBenchmark::AutoRegisterBenchmark(const Benchmark& benchmark) noexcept
-	{
-		BenchmarkRegistry::Get().RegisterBenchmark(benchmark);
-	}
+    //------------------------------------------------------------------------------
+    AutoRegisterBenchmark::AutoRegisterBenchmark(const Benchmark& benchmark) noexcept
+    {
+        BenchmarkRegistry::Get().RegisterBenchmark(benchmark);
+    }
 }

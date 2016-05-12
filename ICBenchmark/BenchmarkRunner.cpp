@@ -32,67 +32,67 @@
 
 namespace IC
 {
-	namespace BenchmarkRunner
-	{
-		namespace
-		{
-			/// Executes the given benchmark and returns a report detailing the time taken in milliseconds.
-			///
-			/// @param benchmark
-			///		The benchmark that should be run.
-			///
-			/// @return A report on the result of the given benchmark.
-			///
-			BenchmarkReport::Benchmark RunBenchmark(const Benchmark& benchmark)
-			{
-				Timer timer(false);
+    namespace BenchmarkRunner
+    {
+        namespace
+        {
+            /// Executes the given benchmark and returns a report detailing the time taken in milliseconds.
+            ///
+            /// @param benchmark
+            ///        The benchmark that should be run.
+            ///
+            /// @return A report on the result of the given benchmark.
+            ///
+            BenchmarkReport::Benchmark RunBenchmark(const Benchmark& benchmark)
+            {
+                Timer timer(false);
 
-				benchmark.GetBenchmarkDelegate()(timer);
-				assert(!timer.IsRunning());
+                benchmark.GetBenchmarkDelegate()(timer);
+                assert(!timer.IsRunning());
 
-				return BenchmarkReport::Benchmark(benchmark.GetBenchmarkName(), timer.GetElapsedTime());
-			}
+                return BenchmarkReport::Benchmark(benchmark.GetBenchmarkName(), timer.GetElapsedTime());
+            }
 
-			/// Compiles the given results data into a benchmark report.
-			///
-			/// @param results
-			///		The results data map.
-			///
-			/// @return The compiled report.
-			///
-			BenchmarkReport GenerateReport(const std::unordered_map<std::string, std::vector<BenchmarkReport::Benchmark>>& results)
-			{
-				std::vector<BenchmarkReport::BenchmarkGroup> benchmarkGroupReports;
+            /// Compiles the given results data into a benchmark report.
+            ///
+            /// @param results
+            ///        The results data map.
+            ///
+            /// @return The compiled report.
+            ///
+            BenchmarkReport GenerateReport(const std::unordered_map<std::string, std::vector<BenchmarkReport::Benchmark>>& results)
+            {
+                std::vector<BenchmarkReport::BenchmarkGroup> benchmarkGroupReports;
 
-				for (const auto& result : results)
-				{
-					auto benchmarks = result.second;
+                for (const auto& result : results)
+                {
+                    auto benchmarks = result.second;
 
-					std::sort(benchmarks.begin(), benchmarks.end(), [](const BenchmarkReport::Benchmark& a, const BenchmarkReport::Benchmark& b)
-					{
-						return a.GetTimeTaken() < b.GetTimeTaken();
-					});
+                    std::sort(benchmarks.begin(), benchmarks.end(), [](const BenchmarkReport::Benchmark& a, const BenchmarkReport::Benchmark& b)
+                    {
+                        return a.GetTimeTaken() < b.GetTimeTaken();
+                    });
 
-					benchmarkGroupReports.push_back(BenchmarkReport::BenchmarkGroup(result.first, benchmarks));
-				}
+                    benchmarkGroupReports.push_back(BenchmarkReport::BenchmarkGroup(result.first, benchmarks));
+                }
 
-				return benchmarkGroupReports;
-			}
-		}
+                return benchmarkGroupReports;
+            }
+        }
 
-		//------------------------------------------------------------------------------
-		BenchmarkReport Run() noexcept
-		{
-			auto benchmarks = BenchmarkRegistry::Get().GetBenchmarks();
+        //------------------------------------------------------------------------------
+        BenchmarkReport Run() noexcept
+        {
+            auto benchmarks = BenchmarkRegistry::Get().GetBenchmarks();
 
-			std::unordered_map<std::string, std::vector<BenchmarkReport::Benchmark>> benchmarkResults;
+            std::unordered_map<std::string, std::vector<BenchmarkReport::Benchmark>> benchmarkResults;
 
-			for (const auto& benchmark : benchmarks)
-			{
-				benchmarkResults[benchmark.GetBenchmarkGroupName()].push_back(RunBenchmark(benchmark));
-			}
+            for (const auto& benchmark : benchmarks)
+            {
+                benchmarkResults[benchmark.GetBenchmarkGroupName()].push_back(RunBenchmark(benchmark));
+            }
 
-			return GenerateReport(benchmarkResults);
-		}
-	}
+            return GenerateReport(benchmarkResults);
+        }
+    }
 }

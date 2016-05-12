@@ -32,36 +32,36 @@
 /// Declares a new benchmark group.
 ///
 /// @param benchmarkGroupName
-///		The name of the benchmark group.
+///        The name of the benchmark group.
 ///
 #define IC_BENCHMARKGROUP(benchmarkGroupName) \
-	namespace benchmarkGroupName##BenchmarkGroup_ \
-	{ \
-		const std::string k_benchmarkGroupName_ = #benchmarkGroupName; \
-	} \
-	namespace benchmarkGroupName##BenchmarkGroup_
+    namespace benchmarkGroupName##BenchmarkGroup_ \
+    { \
+        const std::string k_benchmarkGroupName_ = #benchmarkGroupName; \
+    } \
+    namespace benchmarkGroupName##BenchmarkGroup_
 
 /// Declares a new benchmark within a benchmark group.
 ///
 /// @param benchmarkName
-///		The name of the benchmark.
+///        The name of the benchmark.
 ///
 #define IC_BENCHMARK(benchmarkName) \
-	void benchmarkName##Benchmark_(IC::Timer& timer_) noexcept; \
-	namespace \
-	{ \
-		const IC::AutoRegisterBenchmark benchmarkName##AutoReg(IC::Benchmark(k_benchmarkGroupName_, #benchmarkName, benchmarkName##Benchmark_)); \
-	} \
-	void benchmarkName##Benchmark_(IC::Timer& timer_) noexcept
+    void benchmarkName##Benchmark_(IC::Timer& timer_) noexcept; \
+    namespace \
+    { \
+        const IC::AutoRegisterBenchmark benchmarkName##AutoReg(IC::Benchmark(k_benchmarkGroupName_, #benchmarkName, benchmarkName##Benchmark_)); \
+    } \
+    void benchmarkName##Benchmark_(IC::Timer& timer_) noexcept
 
 /// Starts the timer within a benchmark. This must be called within a benchmark.
 ///
 #define IC_STARTTIMER() \
-	timer_.Start();
+    timer_.Start();
 
 /// Stops the timer within a benchmark. This must be called within a benchmark.
 ///
 #define IC_STOPTIMER() \
-	timer_.Stop();
+    timer_.Stop();
 
 #endif

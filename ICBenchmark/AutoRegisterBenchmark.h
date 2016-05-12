@@ -30,22 +30,22 @@
 namespace IC
 {
     /// This is used to automatically register the wrapped Benchmark with the 
-	/// BenchmarkRegistry. This is typically handled via the macros declared in
-	/// BenchmarkGroup.h.
-	///
-	/// This is not thread safe.
+    /// BenchmarkRegistry. This is typically handled via the macros declared in
+    /// BenchmarkGroup.h.
+    ///
+    /// This is not thread safe.
     ///
     class AutoRegisterBenchmark final
     {
     public:
-		AutoRegisterBenchmark() = default;
+        AutoRegisterBenchmark() = default;
 
-		/// Creates new instance and adds the given benchmark to the registry.
-		///
-		/// @param benchmark
-		///		The benchmark which should be registered.
-		///
-		AutoRegisterBenchmark(const Benchmark& benchmark) noexcept;
+        /// Creates new instance and adds the given benchmark to the registry.
+        ///
+        /// @param benchmark
+        ///        The benchmark which should be registered.
+        ///
+        AutoRegisterBenchmark(const Benchmark& benchmark) noexcept;
     };
 }
 
