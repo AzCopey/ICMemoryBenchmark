@@ -102,7 +102,7 @@ namespace ICMemoryBenchmark
 					{
 						auto a = IC::MakeUnique<std::uint32_t>(allocator);
 						auto b = IC::MakeUnique<std::uint64_t>(allocator);
-						auto e = IC::MakeUnique<SmallStruct>(allocator);
+						auto c = IC::MakeUnique<SmallStruct>(allocator);
 					}
 				}));
 			}
@@ -157,7 +157,6 @@ namespace ICMemoryBenchmark
 				thread.join();
 			}
 
-
 			IC_STOPTIMER();
 		}
 
@@ -206,6 +205,134 @@ namespace ICMemoryBenchmark
 				thread.join();
 			}
 
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a SmallObjectAllocator.
+		///
+		IC_BENCHMARK(SmallObjectAllocator)
+		{
+			constexpr std::size_t k_allocatorSize = 1024;
+
+			std::vector<std::unique_ptr<IC::SmallObjectAllocator>> allocators;
+			for (std::int32_t i = 0; i < k_numThreads; i++)
+			{
+				allocators.push_back(std::unique_ptr<IC::SmallObjectAllocator>(new IC::SmallObjectAllocator(k_allocatorSize)));
+			}
+
+			std::vector<std::thread> threads;
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numThreads; ++i)
+			{
+				auto& allocator = *allocators[i];
+
+				threads.push_back(std::thread([&allocator]()
+				{
+					for (int j = 0; j < k_numIterationsPerThread; ++j)
+					{
+						auto a = IC::MakeUnique<std::uint32_t>(allocator);
+						auto b = IC::MakeUnique<std::uint64_t>(allocator);
+						auto c = IC::MakeUnique<SmallStruct>(allocator);
+					}
+				}));
+			}
+
+			for (auto& thread : threads)
+			{
+				thread.join();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with an ObjectPool.
+		///
+		IC_BENCHMARK(ObjectPool)
+		{
+			constexpr std::size_t k_poolSize = 2;
+
+			std::vector<std::unique_ptr<IC::ObjectPool<std::int32_t>>> int32Pools;
+			std::vector<std::unique_ptr<IC::ObjectPool<std::int64_t>>> int64Pools;
+			std::vector<std::unique_ptr<IC::ObjectPool<SmallStruct>>> smallStructPools;
+			for (std::int32_t i = 0; i < k_numThreads; i++)
+			{
+				int32Pools.push_back(std::unique_ptr<IC::ObjectPool<std::int32_t>>(new IC::ObjectPool<std::int32_t>(k_poolSize)));
+				int64Pools.push_back(std::unique_ptr<IC::ObjectPool<std::int64_t>>(new IC::ObjectPool<std::int64_t>(k_poolSize)));
+				smallStructPools.push_back(std::unique_ptr<IC::ObjectPool<SmallStruct>>(new IC::ObjectPool<SmallStruct>(k_poolSize)));
+			}
+
+			std::vector<std::thread> threads;
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numThreads; ++i)
+			{
+				auto& int32Pool = *int32Pools[i];
+				auto& int64Pool = *int64Pools[i];
+				auto& smallStructPool = *smallStructPools[i];
+
+				threads.push_back(std::thread([&int32Pool, &int64Pool, &smallStructPool]()
+				{
+					for (int j = 0; j < k_numIterationsPerThread; ++j)
+					{
+						auto a = int32Pool.Create();
+						auto b = int64Pool.Create();
+						auto c = smallStructPool.Create();
+					}
+				}));
+			}
+
+			for (auto& thread : threads)
+			{
+				thread.join();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with a PagedObjectPool.
+		///
+		IC_BENCHMARK(PagedObjectPool)
+		{
+			constexpr std::size_t k_poolSize = 2;
+
+			std::vector<std::unique_ptr<IC::PagedObjectPool<std::int32_t>>> int32Pools;
+			std::vector<std::unique_ptr<IC::PagedObjectPool<std::int64_t>>> int64Pools;
+			std::vector<std::unique_ptr<IC::PagedObjectPool<SmallStruct>>> smallStructPools;
+			for (std::int32_t i = 0; i < k_numThreads; i++)
+			{
+				int32Pools.push_back(std::unique_ptr<IC::PagedObjectPool<std::int32_t>>(new IC::PagedObjectPool<std::int32_t>(k_poolSize)));
+				int64Pools.push_back(std::unique_ptr<IC::PagedObjectPool<std::int64_t>>(new IC::PagedObjectPool<std::int64_t>(k_poolSize)));
+				smallStructPools.push_back(std::unique_ptr<IC::PagedObjectPool<SmallStruct>>(new IC::PagedObjectPool<SmallStruct>(k_poolSize)));
+			}
+
+			std::vector<std::thread> threads;
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numThreads; ++i)
+			{
+				auto& int32Pool = *int32Pools[i];
+				auto& int64Pool = *int64Pools[i];
+				auto& smallStructPool = *smallStructPools[i];
+
+				threads.push_back(std::thread([&int32Pool, &int64Pool, &smallStructPool]()
+				{
+					for (int j = 0; j < k_numIterationsPerThread; ++j)
+					{
+						auto a = int32Pool.Create();
+						auto b = int64Pool.Create();
+						auto c = smallStructPool.Create();
+					}
+				}));
+			}
+
+			for (auto& thread : threads)
+			{
+				thread.join();
+			}
 
 			IC_STOPTIMER();
 		}

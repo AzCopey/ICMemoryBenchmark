@@ -129,5 +129,59 @@ namespace ICMemoryBenchmark
 
 			IC_STOPTIMER();
 		}
+
+		/// Performs the benchmark with an ObjectPool.
+		///
+		IC_BENCHMARK(ObjectPool)
+		{
+			constexpr std::size_t k_poolSize = 5;
+
+			struct AllocStruct final
+			{
+				std::uint8_t m_buffer[k_allocationSize];
+			};
+
+			IC::ObjectPool<AllocStruct> pool(k_poolSize);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = pool.Create();
+				auto b = pool.Create();
+				auto c = pool.Create();
+				auto d = pool.Create();
+				auto e = pool.Create();
+			}
+
+			IC_STOPTIMER();
+		}
+
+		/// Performs the benchmark with an ObjectPool.
+		///
+		IC_BENCHMARK(PagedObjectPool)
+		{
+			constexpr std::size_t k_poolSize = 5;
+
+			struct AllocStruct final
+			{
+				std::uint8_t m_buffer[k_allocationSize];
+			};
+
+			IC::ObjectPool<AllocStruct> pool(k_poolSize);
+
+			IC_STARTTIMER();
+
+			for (int i = 0; i < k_numIterations; ++i)
+			{
+				auto a = pool.Create();
+				auto b = pool.Create();
+				auto c = pool.Create();
+				auto d = pool.Create();
+				auto e = pool.Create();
+			}
+
+			IC_STOPTIMER();
+		}
 	}
 }
